@@ -1,0 +1,20 @@
+include helpers/_variables
+include helpers/_mixins
+
+doctype html
+html
+
+  head
+    include meta/_head
+
+  body.body
+    include svg
+
+    include layout/_header
+
+    include pages/_about
+
+    include layout/_footer
+
+    //- скрипты
+    include meta/_scripts

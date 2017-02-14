@@ -1,0 +1,138 @@
+// /src/scss/_popup.scss
+// всплывающие окна
+
+.mfp-bg{
+  background-color: rgba(black, .75);
+}
+
+.mfp-close-btn-in .mfp-close{
+  font-size: 0;
+
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  width: 3.4rem;
+  height: 3.4rem;
+
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: lightgreen;
+  &:before
+  ,
+  &:after{
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    display: block;
+
+    width: 100%;  // 1,4142 - корень из 2х
+    height: 0;
+
+    content: '';
+    transform-origin: center;
+
+    border-top: 3px solid #000;
+  }
+  &:before{
+    transform: translateY(-50%) rotate(45deg) scale(1/1.618);
+  }
+  &:after{
+    transform: translateY(-50%) rotate(-45deg) scale(1/1.618);
+  }
+}
+
+.popup-link{
+  outline: none;
+
+  @extend %text-decoration;
+}
+
+.popup{
+  position: relative;
+
+  padding-top: 2.6rem;
+
+  border: 1px solid #efecf1;
+  // border: 1px solid #000;
+  background-color: white;
+  &__title{
+    margin-bottom: 2.5rem;
+
+    text-align: center;
+  }
+  &__promo{
+    margin-bottom: 5rem;
+    padding: 0 $gutter;
+
+    text-align: center;
+  }
+}
+
+.popup-form{
+  display: flex;
+  flex-direction: column;
+
+  max-width: 38rem;
+  margin: 0 auto;
+
+  align-items: center;
+  // justify-content: center;
+  & .form-group{
+    width: 100%;
+  }
+  & .form-control{
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+
+    width: 100%;
+    height: 64px;
+    padding: 0 3.3rem;
+    // color: #aeacac;
+
+    color: $black;
+    // background-color: white;
+    border: 1px solid #efecf1;
+    // &:focus {
+    //   outline-color: green;
+    // }
+  }
+  & .help-block{
+    margin-bottom: 2.3rem;
+
+    text-align: center;
+
+    @extend %p;
+  }
+  & .has-error{
+    & .control-label
+    ,
+    & .help-block{
+      color: $brand-color;
+    }
+    & .form-control{
+      border: 1px solid $brand-color;
+    }
+  }
+  & .has-success{
+    & .control-label
+    ,
+    & .help-block{
+      color: green;
+    }
+    & .form-control{
+      border: 1px solid green;
+    }
+  }
+  & button[type='submit']{
+    min-width: 19rem;
+    margin: 6rem 0 9rem;
+
+    align-self: center;
+    @extend .btn;
+    @extend .btn-black;
+  }
+}

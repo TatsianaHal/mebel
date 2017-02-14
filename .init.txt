@@ -1,0 +1,4 @@
+npm i gulp gulp-pug gulp-sass gulp.spritesmith gulp-plumber gulp-sourcemaps gulp-rename browser-sync --save-dev
+npm i gulp-autoprefixer gulp-csso gulp-livereload gulp-pxtorem gulp-concat --save-dev
+npm i gulp-svgo gulp-svg-sprite gulp-cheerio gulp-replace gulp-html2jade gulp-delete-lines --save-dev
+npm i gulp-babel babel-core babel-preset-es2015 babel-preset-es2016 babel-preset-es2017 --save-dev

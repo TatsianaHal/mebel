@@ -1,0 +1,359 @@
+// /src/scss/_buttons.scss
+
+//// Общие стили для кнопок
+//.btn {
+//  @include text-decoration;
+//  display: block;
+//
+//  text-align: center;
+//  text-transform: uppercase;
+//
+//  outline: none !important;
+//  small {
+//    text-transform: none;
+//  }
+//}
+//
+//// Размеры кнопок
+//.btn--large {
+//  @include font(1.8rem, 700, 6rem);
+//
+//  width: 22.5rem;
+//  height: 6rem;
+//}
+//
+//.btn--medium {
+//  @include font(1.8rem, 700, 4.8rem);
+//
+//  width: 19.5rem;
+//  height: 4.8rem;
+//}
+//
+//// Оформление кнопок
+//// Основной цвет прозрачная
+//.btn--bmc-transparent {
+//  @include font(1.8rem, 700, 6.2rem);
+//
+//  color: $bmc;
+//  border: 0.1rem solid $bmc;
+//  border-radius: 0.1rem;
+//  &,
+//  &:link,
+//  &:visited {
+//    color: $bmc;
+//    background-color: transparent;
+//  }
+//  &:hover,
+//  &:active {
+//    color: white;
+//    background-color: $bmc;
+//  }
+//}
+//
+//// Основной цвет
+//.btn--bmc {
+//  @include text-decoration;
+//
+//  border: none;
+//  &,
+//  &:link,
+//  &:visited {
+//    color: white;
+//    background-color: $bmc;
+//  }
+//  &:hover,
+//  &:active {
+//    color: white;
+//    background-color: $bsc;
+//  }
+//}
+//
+//// Вторичный цвет
+//.btn--bsc {
+//  @include text-decoration;
+//
+//  border: none;
+//  &,
+//  &:link,
+//  &:visited {
+//    color: white;
+//    background-color: $bsc;
+//  }
+//  &:hover,
+//  &:active {
+//    color: white;
+//    background-color: $bmc;
+//  }
+//}
+//
+//.btn--white {
+//  &,
+//  &:link,
+//  &:visited {
+//    color: white;
+//    border: 0.1rem solid white;
+//    background-color: transparent;
+//  }
+//  &:hover,
+//  &:active {
+//    color: $black;
+//    border: 0.1rem solid $black;
+//    background-color: $bmc;
+//  }
+//}
+
+.button-group {
+  display: flex;
+
+  justify-content: space-between;
+  &--center-items {
+    justify-content: center;
+  }
+}
+// Общие стили для кнопок
+.button {
+  @include transition;
+
+  display: flex;
+
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 1px;
+  outline: none !important;
+
+  align-items: center;
+
+
+  &:hover {
+    cursor: pointer;
+  }
+  &--center {
+    margin: 0 auto;
+  }
+
+  .svg-icon-shopping-cart {
+    @include transition;
+
+    margin-right: 10px;
+  }
+}
+
+//// button extra-small
+//.button--xs {
+//  @include font(12px, 700, 38px);
+//  padding: 0 25px;
+//}
+//
+//.button--xs-rounded {
+//  @extend .button--xs;
+//  border-radius: 18px;
+//}
+//
+//// button small
+//.button--sm {
+//  @include font(14px, 700, 14px);
+//  height: 50px;
+//  //padding: 0 45px;
+//  padding: 0 $gutter * 2;
+//
+//  @media (min-width: $sm) {
+//    padding: 0 35px;
+//    //padding: 0 45px;
+//  }
+//}
+//
+//.button--sm-rounded {
+//  @extend .button--sm;
+//  border-radius: 25px;
+//}
+//
+// button medium size
+.button--medium {
+  @include font(14px, 700, 14px);
+  //height: 48px;
+  //padding: 0 $gutter * 2;
+
+  height: 48px;
+  padding: 0 35px;
+
+  @media (min-width: $sm) {
+    height: 48px;
+    padding: 0 35px;
+  }
+}
+
+.button--medium-rounded {
+  @extend .button--medium;
+
+  border-radius: 28px;
+}
+
+// button large size
+.button--large {
+  @include font(16px, 700, 16px);
+  //width: 297px;
+
+  height: 62px;
+  //height: 64px;
+  padding: 0 38px;
+
+  border-radius: 1px;
+}
+
+.button--large-rounded {
+  @extend .button--large;
+
+  border-radius: 31px;
+}
+
+//// button extra-large
+//.button--xl {
+//  @include font(16px, 700, 60px);
+//  padding: 0 60px;
+//
+//  @media (min-width: $breakpoint) {
+//    @include font(16px, 700, 74px);
+//    padding: 0 80px;
+//  }
+//}
+//
+//.button--xl-rounded {
+//  @extend .button--xl;
+//  border-radius: 30px;
+//
+//  @media (min-width: $breakpoint) {
+//    border-radius: 37px;
+//  }
+//}
+//$test-red: red;
+//$test-red-hover: #{lighten($test-red, 15%)};
+//$test-red-active: #{darken($test-red, 15%)};
+
+// генератор цвета кнопки
+@each $color-name, $color, $color-hover, $color-active in
+                                  (white, white, white, white),
+                                  (main, $bmc, $bsc, $bsc-active),
+                                  (second, $bsc, $bmc, $bmc-active),
+                                  (third, $btc, $btc-hover, $btc-active) {
+  // кнопка с рамкой и белым фоном
+  .button--#{$color-name}-color {
+    background-color: white;
+
+    &,
+    &:link,
+    &:visited {
+      color: $color;
+      border-color: $color;
+    }
+
+    &:hover {
+      color: white;
+      border-color: $color-hover;
+      background-color: $color-hover;
+    }
+
+    &:active {
+      color: white;
+      border-color: $color-active;
+      background-color: $color-active;
+    }
+
+    &.active {
+      color: white;
+      border-color: $color;
+      background: $color;
+
+      &:hover {
+        border-color: $color-hover;
+        background: $color-hover;
+      }
+    }
+  }
+  // кнопка залита цветом
+  .button--#{$color-name}-color-filled {
+    color: white;
+
+    &,
+    &:link,
+    &:visited {
+      border-color: $color;
+      background-color: $color;
+    }
+
+    &:hover {
+      border-color: $color-hover;
+      background-color: $color-hover;
+    }
+
+    &:active {
+      border-color: $color-active;
+      background-color: $color-active;
+    }
+  }
+}
+
+.button--white {
+  background-color: transparent;
+
+  &,
+  &:link,
+  &:visited {
+    color: white;
+    border-color: white;
+  }
+
+  &:hover,
+  &:active {
+    color: $bmc;
+    border-color: white;
+    background-color: white;
+  }
+  //&.active {
+  //  color: white;
+  //  border-color: $color;
+  //  background: $color;
+  //
+  //  &:hover {
+  //    border-color: $color-hover;
+  //    background: $color-hover;
+  //  }
+  //}
+}
+
+.button--black-filled {
+  &,
+  &:link,
+  &:visited {
+    color: $snow-white;
+    border-color: $black;
+    background-color: $black;
+  }
+  &:hover {
+    border-color: $bsc;
+    background-color: $bsc;
+  }
+  &:active {
+    border-color: darken($bsc, 5%);
+    background-color: darken($bsc, 5%);
+  }
+}
+
+
+.callback {
+  padding: 0 $gutter;
+
+  @media (min-width: $sm) {
+    padding: 0 25px;
+  }
+  .svg-icon-handset {
+    width: 12px;
+    height: 12px;
+    @media (min-width: $sm) {
+      margin-right: 10px;
+    }
+  }
+}

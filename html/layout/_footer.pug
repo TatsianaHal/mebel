@@ -1,0 +1,56 @@
+footer.footer
+  .container
+    .row
+      .footer__column
+        a(href="#").logo
+          span Мебель
+          +svg-icon('logo')
+          span Дома
+        .footer__title E-mail:
+        a(href="mailto:mebeldoma@yandex.ru", target="_blank").footer__mail mebeldoma@yandex.ru
+      .footer__column
+        ul.footer-nav
+          li.footer__title Главная
+          each item, i in navMenu
+            li.footer-nav__li
+              a(href=item.href).footer-nav__link= item.name
+      .footer__column
+        ul.footer-nav
+          li.footer__title Каталог
+          each item, i in navMenu[1].submenu
+            li.footer-nav__li
+              a(href=item.href).footer-nav__link= item.name
+      .footer__column
+        div(itemscope itemtype="http://schema.org/Organization")
+            .footer__title Наш адрес:
+            .footer__address
+              span(itemprop='name')=companyName
+              br
+              span(itemprop="address" itemscope itemtype="http://schema.org/PostalAddress")
+                //-span(itemprop='postalCode')  119021
+                span(itemprop='addressLocality') г. Пенза
+                | ,
+                =' '
+                span(itemprop='streetAddress') ул. Московская, 73а, строение 4
+                | ,
+                =' '
+                br
+                | тел.:
+                =' '
+                span(itemprop='telephone') 8 (800) 555-23-56
+        a(href="/contacts.html").button.button--medium.button--main-color-filled
+          +svg-icon('geo')
+          //-svg.geo
+            use(xlink:href='#geo')
+          span Показать на карте
+        a(href="http://onlinebees.ru", target="_blank").onlinebees
+          span Разработка сайта
+          svg.onlinebees-svg
+            use(xlink:href='#onlinebees-svg')
+// Модальное окно "Обратный звонок" в шапкеи подвале сайта
+#callback.mfp-hide.popup.popup-callback
+  form.form.form-callback
+    +input-type-text('Фамилия Имя Отчество')
+    +input-type-text('Телефон')
+    button(type='submit').form-callback__submit Заказать звонок
+// Модальное окно "Заказать звонок" в шапке и подвале сайта

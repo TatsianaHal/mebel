@@ -1,0 +1,409 @@
+// /src/scss/_form.scss
+// Формы сайта
+
+form {
+  textarea.form-control {
+    //padding: 20px 20px;
+  }
+  .help-block {
+    // @extend %p;
+    margin-bottom: 20px;
+
+    text-align: center;
+  }
+  //input[type="text"],
+  //input[type="password"] {
+  //  @include transition;
+  //
+  //  line-height: 46px;
+  //
+  //  height: 46px;
+  //}
+  textarea {
+    resize: none;
+  }
+  & .has-error {
+    & .control-label,
+    & .help-block {
+      color: orange;
+    }
+    & .form-control {
+      border: 1px solid orange;
+    }
+  }
+  & .has-success {
+    & .control-label,
+    & .help-block {
+      color: green;
+    }
+    & .form-control {
+      border: 1px solid green;
+    }
+  }
+}
+
+// Общие стили для форм
+.form {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  .form-group {
+    width: 100%;
+  }
+  //.control-label {
+  //  @include font(14px, 400, 17px, normal, MyriadPro);
+  //
+  //  display: block;
+  //
+  //  margin-bottom: 5px;
+  //
+  //  color: gray;
+  //  @media (min-width: $sm) {
+  //    margin-bottom: 15px;
+  //  }
+  //}
+  .form-control {
+    @include font(14px, 400, 18px);
+
+    line-height: 46px;
+
+    width: 100%;
+    //height: 46px;
+    height: 54px;
+    padding: 0 $gutter;
+
+    color: $black;
+    border: 1px solid $border;
+    border-radius: 2px;
+    background: white;
+    &:focus {
+      border: 1px solid $border;
+    }
+    @media (min-width: $breakpoint) {
+      padding: 0 17px;
+    }
+  }
+}
+
+// Поиск в шапке
+.header-search {
+  @include transition(350ms);
+
+  position: relative;
+
+  display: none;
+  overflow: hidden;
+
+  width: 160px;
+  height: 38px;
+
+  border: 1px solid $border;
+  border-radius: 19px;
+  background-color: white;
+
+  align-items: center;
+  @media (min-width: $md) {
+    display: flex;
+  }
+  &.focused {
+    position: relative;
+
+    width: 100%;
+
+    border: 1px solid $bmc;
+    box-shadow: 0 0 0 1px $bmc;
+  }
+  .form-control {
+    @include font(12px, 400, 12px);
+    //width:inherit;
+    //height:inherit;
+
+    width: 100%;
+    padding: 0 38px 0 20px;
+
+    color: darkgrey;
+    border: none;
+  }
+  &__submit {
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    display: flex;
+
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    color: $bmc;
+    border: none;
+    background: none;
+
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+.form-submit {
+  display: flex;
+
+  margin-top: auto;
+
+  align-items: center;
+  justify-content: space-between;
+
+  .form-group {
+    width: auto;
+  }
+
+  //button[type="submit"] {
+  //  @extend .button;
+  //  // @extend .button--cream;
+  //
+  //  height: 100%;
+  //}
+}
+
+.form-callback {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  @media (min-width: $md) {
+    flex-direction: row;
+
+    align-items: center;
+  }
+  .form-group {
+    width: 100%;
+    margin-bottom: 20px;
+    @media (min-width: $md) {
+      max-width: 308px;
+      margin-right: $gutter * 2;
+      margin-bottom: 0;
+    }
+  }
+  .form-control {
+    @include transition();
+    @include font(14px, 600, 14px);
+
+    width: 100%;
+    height: 36px;
+    padding: 0 $gutter ;
+
+    color: $black;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #f9f9f9;
+
+
+    &:focus {
+      border: 1px solid $black;
+      background: white;
+    }
+  }
+  &__submit {
+    @include transition();
+    @include font(14px, 700, 14px);
+
+    height: 48px;
+    padding: 0 35px;
+
+    text-transform: uppercase;
+
+    color: white;
+    border: none;
+    border-radius: 1px;
+    background-color: black;
+
+    align-self: center;
+    @media (min-width: $md) {
+      flex-basis: 210px;
+
+      min-width: 210px;
+      margin-left: auto;
+    }
+    &:hover,
+    &:active {
+      cursor: pointer;
+
+      background-color: $bmc;
+    }
+  }
+}
+
+
+// Форма на странице Продукта
+.form-product {
+  margin-top: 32px;
+  padding-bottom: $gutter * 2;
+  .form-group {
+    &:not(:last-of-type) {
+      margin-bottom: 20px;
+    }
+  }
+  .form-submit {
+    @media (max-width: $lg - 1) {
+      flex-direction: column;
+
+      align-items: flex-start;
+      .button {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+// Форма на странице Контакты
+.form-contacts {
+  margin-top: $gutter;
+  @media (min-width: $breakpoint) {
+    margin-top: 31px;
+  }
+  &__column {
+    @include span(12);
+    @media (min-width: $md) {
+      @include span(6);
+    }
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-submit {
+    //flex-direction: column;
+    //flex-direction: row;
+    @media (max-width: $sm - 1) {
+      flex-direction: column;
+
+      align-items: flex-start;
+    }
+    @media (min-width: $md) and (max-width: $breakpoint - 1) {
+      flex-direction: column;
+
+      align-items: flex-start;
+    }
+  }
+  .form-submit .form-group {
+    margin-bottom: 0;
+    @media (max-width: $sm - 1) {
+      margin-top: 20px;
+    }
+    @media (min-width: $md) and (max-width: $breakpoint - 1) {
+      margin-top: 20px;
+    }
+  }
+  textarea.form-control {
+    height: 130px;
+
+    resize: none;
+    @media (min-width: $md) {
+      height: 202px;
+    }
+  }
+  .form-submit {
+    @media (min-width: $breakpoint) {
+      margin-top: 30px;
+    }
+  }
+}
+
+// Поиск в шапке
+.bottom-search {
+  @include transition(350ms);
+
+  position: relative;
+
+  display: none;
+
+  margin-right: $gutter * 2;
+
+  align-items: center;
+  align-self: center;
+  @media (min-width: $breakpoint) {
+    margin-right: 60px;
+    margin-left: 38px;
+  }
+  @media (min-width: $md) {
+    display: block;
+  }
+  &.focused {
+    position: relative;
+
+    width: 100%;
+
+    border: 1px solid $bmc;
+    box-shadow: 0 0 0 1px $bmc;
+  }
+  .container {
+    display: flex;
+
+    align-items: center;
+  }
+  .form-group {
+    display: flex;
+    overflow: hidden;
+
+    margin-left: auto;
+
+    align-items: center;
+  }
+  .control-label {
+    @include font(14px, 700, 26px);
+
+    margin-right: 20px;
+
+    white-space: nowrap;
+
+    color: white;
+  }
+  .form-control {
+    @include font(12px, 400, 12px);
+
+    width: 300px;
+    height: 38px;
+    padding: 0 110px 0 20px;
+
+    color: darkgrey;
+    border: 1px solid transparent;
+    border-radius: 19px;
+    background-color: white;
+    @media (min-width: $lg) {
+      width: 400px;
+    }
+  }
+  &__submit {
+    @include transition();
+    @include font(14px, 700, 14px);
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    display: flex;
+
+    height: 38px;
+    margin: 0;
+    padding: 0 25px 0 $gutter;
+
+    transform: translateY(-50%);
+
+    color: $bmc;
+    border: none;
+    background: none;
+
+    align-items: center;
+    justify-content: center;
+    .svg-icon-search {
+      min-width: 13px;
+      margin-right: 14px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

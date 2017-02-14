@@ -1,0 +1,80 @@
+// /src/scss/pages/_product.scss
+// Страница карточки товара
+
+.product {
+  margin-top: 23px;
+  &__gallery {
+    @include span(6);
+  }
+
+  &__img {
+    font-size: 0;
+
+    display: flex;
+
+    margin-bottom: 10px;
+
+    background: white;
+    box-shadow: inset 0 0 0 1px $border;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    img {
+      @include img;
+    }
+  }
+  &__subgallery {
+    @include flex-wrap(5px); // см. _grid
+    a {
+      //@include column-in-row(5, 5px); // см. _grid
+      font-size: 0;
+
+      display: flex;
+
+      height: 115px;
+      margin-bottom: 10px;
+
+      background: white;
+      box-shadow: inset 0 0 0 1px $border;
+
+      justify-content: center;
+    }
+
+    img {
+      @include img;
+    }
+  }
+
+  &__feature {
+    @include span(6);
+
+    display: flex;
+    flex-direction: column;
+
+    //align-items: flex-start;
+    h1 {
+      margin-top: -7px;
+      margin-bottom: 37px;
+    }
+  }
+  &__description {
+    margin-bottom: 41px;
+  }
+  &__bottom {
+    display: flex;
+
+    justify-content: space-between;
+  }
+  &__old-price {
+    @include font(24px, 400, 1, italic);
+    @include line-through;
+
+    display: inline-block;
+
+    color: #b0b0b0;
+  }
+  &__price {
+    @include font(40px, 700, 1);
+  }
+}

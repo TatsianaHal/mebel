@@ -1,0 +1,16 @@
+include ../helpers/_variables
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Статьи'}]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    .h1= path[1].name
+    .articles
+      .row
+        - for (var x = 0; x < 8; x++)
+          include ../components/_article-item
+    .button-group.button-group--center-items
+      a(href='/articles.html').button.button--large.button--main-color Показать еще
+  include ../components/_bottom-panel

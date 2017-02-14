@@ -1,0 +1,15 @@
+//- акционные лейблы. См. _common.scss
+-
+  var figure = [
+                {title: 'Жаккард'},
+                {title: 'Шенилл'},
+                {title: 'Флок'},
+                {title: 'Велюр'}
+              ]
+
+//- Карточка одной статьи в разделе каталог и на главной
+each item in figure
+  figure.item.figure-item
+    a(href='/img/1920x1080.jpg', data-imagelightbox='subcatalog-2-item').item-img.figure-item__link
+      img(src='http://placehold.it/260x260', alt=item.title).figure-item__img
+    figcaption.figure-item__caption=item.title

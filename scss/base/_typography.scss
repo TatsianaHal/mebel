@@ -1,0 +1,62 @@
+// /src/scss/см. _typography.scss
+
+h1,
+.h1 {
+  @include font(36px, 600, 40px);
+
+  margin: 10px 0 26px;
+
+  color: $black;
+}
+
+h2,
+.h2 {
+  @include font(30px, 700, 30px);
+
+  margin: 30px auto;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  color: $bmc;
+}
+
+h3,
+.h3 {
+  @include font(24px, 600, 26px);
+
+  color: $black;
+}
+
+h4,
+.h4 {
+  @include font(24px, 600, 26px);
+
+  color: $black;
+}
+
+p {
+  @include font(16px, 300, 26px);
+  //color: #242424;
+
+  color: $black;
+}
+
+a {
+  @include font(inherit, inherit, inherit);
+
+  color: $bmc;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: 700;
+}

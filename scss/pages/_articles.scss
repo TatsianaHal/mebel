@@ -1,0 +1,90 @@
+// /src/scss/pages/_articles.scss
+// Статьи
+
+.articles {
+  margin-bottom: $gutter;
+  @media (min-width: $sm) {
+    margin-bottom: 35px;
+  }
+}
+
+// карточка статьи
+.article-item {
+  @include span(12);
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+  // карточка статьи на главной
+  .swiper-slide & {
+    width: 100%;
+    margin: 0;
+  }
+  @media (min-width: $sm) {
+    margin-bottom: $gutter * 2;
+  }
+
+  @media (min-width: $sm) and (max-width: $lg - 1) {
+    //@include half;
+    @include span(6);
+
+    margin-bottom: $gutter * 3;
+  }
+  @media (min-width: $lg) and (max-width: $breakpoint - 1) {
+    //@include third;
+    @include span(4);
+
+    margin-bottom: $gutter * 4;
+  }
+  @media (min-width: $breakpoint) {
+    //@include fourth;
+    @include span(3);
+
+    margin-bottom: $gutter * 5;
+  }
+  &__img {
+    @include text-decoration;
+
+    font-size: 0;
+
+    width: 100%;
+    //height: 195px;
+    margin-bottom: 22px;
+    &:hover {
+      cursor: pointer;
+    }
+    img {
+      @include img;
+    }
+  }
+  &__title {
+    @include text-decoration;
+    @include transition();
+    @include font(24px, 600, 30px);
+
+    margin-bottom: 16px;
+
+    color: $black;
+    &:hover {
+      cursor: pointer;
+
+      color: $bmc;
+    }
+  }
+  &__text {
+    @include font(16px, 300, 26px);
+
+    margin-bottom: 20px;
+    @media (min-width: $md) {
+      margin-bottom: 31px;
+    }
+  }
+  .button {
+    align-self: flex-start;
+  }
+}
+
+.article {
+  margin-bottom: 50px;
+}

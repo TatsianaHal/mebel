@@ -1,0 +1,78 @@
+// /src/scss/_common.scss
+// Общие стили для всех страниц
+
+//.main {
+//  padding-bottom: 90px;
+//}
+
+.container {
+  // @include min-width;
+  width: 100%;
+  max-width: $site-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $gutter;
+  padding-left: $gutter;
+
+  //box-shadow: 0 0 0 1px silver;
+}
+
+.subcontainer {
+  width: 100%;
+  //padding-right: 25px;
+  //padding-left: 25px;
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+// Логотипы хит продаж, новинка, акция/распродажа
+.label {
+  position: relative;
+}
+@each $class, $text, $bgc in  (hit, "Хит продаж", #ea4e00),
+                              (new, "Новинка", #8bb21e),
+                              (action, "Акция", #e52c49),
+                              (discount, "Скидка", #e4af00),
+                              (sale, "Распродажа", #e56c00),
+                              (news, "Новость", #8bb21e) {
+  .label-#{$class} {
+    position: relative;
+    &:after {
+      @include font(14px, 700, 38px);
+
+      position: absolute;
+      top: 20px;
+      right: 0;
+
+      height: 38px;
+      padding: 0 15px;
+
+      content: $text;
+      text-transform: uppercase;
+
+      color: white;
+      border: none;
+      background-color: $bgc;
+    }
+  }
+}
+
+.date {
+  @include font(14px, 300, 22px);
+
+  color: #b0b0b0;
+}
+
+.rouble:after {
+  //@include font(inherit, inherit, inherit, normal, Rouble);
+  font-family: ALSRubl;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+
+  margin-left: 5px;
+
+  content: "₽";
+
+  color: inherit;
+}

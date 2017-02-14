@@ -1,0 +1,443 @@
+// /src/scss/_header.scss
+
+.top-panel {
+  height: 40px;
+
+  background: $bmc;
+
+  .container {
+    height: inherit;
+  }
+  .row {
+    height: inherit;
+
+    align-items: stretch;
+  }
+  &__geo {
+    @include transition();
+
+    display: flex;
+
+    width: 40px;
+
+
+    color: white;
+    background: $black;
+
+    align-items: center;
+    justify-content: center;
+    @media (min-width: $sm) and (max-width: $md - 1) {
+      margin-right: $gutter;
+    }
+    @media (min-width: $md) {
+      width: 54px;
+      margin-right: $gutter * 2;
+    }
+    &:hover {
+      background: $bsc;
+    }
+  }
+  &__contacts {
+    display: flex;
+    // height: 100%;
+    // border: 1px solid #000;
+
+    align-items: center;
+  }
+  &__address {
+    @include transition();
+    @include font(14px, 400, 14px);
+
+    display: none;
+
+    margin-right: $gutter;
+
+    text-decoration: none;
+
+    color: white;
+    border-bottom: 1px dashed white;
+
+    align-self: center;
+    @media (min-width: $sm) {
+      display: block;
+    }
+    @media (min-width: $md) {
+      margin-right: 35px;
+    }
+    &:hover {
+      color: $black;
+      border-bottom: 1px dashed $black;
+    }
+  }
+  &__phone {
+    @include text-decoration;
+    @include font(14px, 400, 14px);
+    @include transition();
+
+    align-self: center;
+    @media (max-width: $sm - 1) {
+      margin: 0 auto;
+    }
+    &,
+    &:link,
+    &:visited {
+      color: white;
+    }
+    &:hover,
+    &:active {
+      color: $black;
+    }
+  }
+  .callback {
+    @include font(12px, 300, 12px);
+    max-height: 100%;
+
+    @media (max-width: $sm - 1) {
+      font-size: 0;
+    }
+    @media (min-width: $sm) {
+      margin-left: auto;
+    }
+  }
+}
+
+.header {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 10px;
+  &__container {
+    display: flex;
+
+    height: 108px;
+    //border: 1px solid #000;
+
+    align-items: center;
+    flex-grow: 1;
+  }
+  &__column {
+    display: flex;
+
+    &:nth-of-type(3) {
+      justify-content: flex-end;
+    }
+    @media (max-width: $md - 1) {
+      &:nth-of-type(1) {
+        @include span(2);
+      }
+      &:nth-of-type(2) {
+        @include span(8);
+      }
+      &:nth-of-type(3) {
+        @include span(2);
+      }
+    }
+    @media (min-width: $md) {
+      @include span(4);
+    }
+  }
+  .logo {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.logo {
+  @include text-decoration;
+
+  display: flex;
+
+  text-transform: uppercase;
+
+  align-items: center;
+  // justify-content: center;
+  justify-content: flex-start;
+  span {
+    @include font(18px, 700, 18px);
+
+    color: $black;
+    @media (min-width: $md) {
+      @include font(23px, 700, 23px);
+    }
+    &:last-of-type {
+      color: $bmc;
+    }
+  }
+  .svg-icon-logo {
+    margin: 0 10px;
+
+    color: $bmc;
+    @media (min-width: $md) {
+      margin: 0 20px;
+    }
+  }
+}
+
+.nav {
+  $nav-height: 50px;
+  $nav-padding: 16px;
+  $nav-font-size: 16px;
+  $nav-font-weight: 500;
+  $nav-font-weight-hover: 700;
+  $nav-bg-color: transparent;
+  $nav-bg-color-hover: $bmc;
+  $nav-font-color: $black;
+  $nav-font-color-hover: white;
+  // z-index: 1000;
+
+  width: 100%;
+
+  // box-shadow: 0 0 0 2px $bmc;
+  @media (min-width: $breakpoint) {
+    border: 2px solid $bmc;
+  }
+  &__list {
+    font-size: 0;
+
+    display: none;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    @media (min-width: $breakpoint) {
+      display: flex !important;
+
+      justify-content: space-between;
+    }
+  }
+  &__list-item {
+    width: 100%;
+
+    flex-grow: 0;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $border;
+      @media (min-width: $breakpoint) {
+        border: none;
+      }
+    }
+  }
+  &__list-item.has-sub {
+    position: relative;
+  }
+  &__link {
+    @include transition();
+    @include font($nav-font-size, $nav-font-weight, $nav-font-size);
+
+    position: relative;
+    // display: block;
+
+    display: flex;
+
+    height: $nav-height;
+
+    text-align: center;
+    text-decoration: none;
+
+    color: $nav-font-color;
+    background-color: $nav-bg-color;
+
+    align-items: center;
+    justify-content: flex-start;
+    @media (min-width: $breakpoint) {
+      // display: inline-block;
+      justify-content: center;
+    }
+    span {
+      text-align: center;
+    }
+    .nav__list-item & {
+      padding: 0 $gutter;
+      @media (min-width: $xxl) {
+        padding: 0 25px;
+      }
+    }
+    .nav__list-item:hover & {
+      @media (min-width: $breakpoint) {
+        @include font($nav-font-size, $nav-font-weight-hover, $nav-font-size);
+
+        color: $nav-font-color-hover;
+        background-color: $nav-bg-color-hover;
+      }
+    }
+    .nav__list-item.active &,
+    .nav__list-item.opened & {
+      @include font($nav-font-size, $nav-font-weight-hover, $nav-font-size);
+
+      color: $nav-font-color-hover;
+      background-color: $nav-bg-color-hover;
+    }
+  }
+  // Стрелка у выпадающего меню
+  .caret {
+    display: flex;
+
+    width: 50px;
+    height: inherit;
+
+    align-items: center;
+    justify-content: center;
+    // миксин генерирует стрелку в псевдоэлементе before см. _mixins.scss
+
+    // анимация стрелки
+
+    @media (max-width: $breakpoint - 1) {
+      @include arrow(8px, 1px, currentcolor, currentcolor);
+
+      margin-right: -$gutter;
+      margin-left: auto;
+
+      border-left: 1px solid $border;
+      &:after {
+        right: auto;
+        left: 50%;
+      }
+    }
+    @media (min-width: $breakpoint) {
+      @include arrow(8px, 1px, currentcolor, currentcolor);
+
+      width: 20px;
+      margin-left: $gutter;
+
+      box-shadow: none;
+    }
+  }
+  // поворот стрелки при наведении
+  &__list-item.has-sub:hover .caret {
+    @media (min-width: $breakpoint) {
+      @include rotate-arrow("up");
+    }
+  }
+  // поворот стрелки при раскрытии подменю
+  &__list-item.has-sub.opened .caret {
+    @media (max-width: $breakpoint - 1) {
+      @include rotate-arrow("up");
+    }
+  }
+  // выпадающее меню
+  &__sub-list {
+    //@include transition();
+    position: relative;
+    z-index: 100;
+
+    display: none;
+
+    min-width: 100%;
+    padding-left: 15px;
+
+    list-style: none;
+
+    background-color: white;
+    @media (min-width: $breakpoint) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+      padding-left: 0;
+
+      border-top: 2px solid $bmc;
+    }
+  }
+  &__sub-list-item {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $border;
+      @media (min-width: $breakpoint) {
+        border: none;
+      }
+    }
+  }
+  &__list-item:hover .nav__sub-list {
+    @media (min-width: $breakpoint) {
+      display: block;
+    }
+  }
+  &__sub-link {
+    @include text-decoration;
+    @include font(16px, 400, 60px);
+
+    display: block;
+
+    padding: 0 25px;
+
+    white-space: nowrap;
+
+    color: $black;
+    @media (min-width: $breakpoint) {
+      padding: 0 25px;
+    }
+    .nav__sub-list-item:hover &,
+    .nav__sub-list-item.active & {
+      color: $bmc;
+      background: rgba($black, 0.05);
+    }
+  }
+}
+
+// кнопка раскрытия мобильного меню в шапке
+.nav-button {
+  position: relative;
+
+  display: block;
+
+  width: 24px;
+  height: 21px;
+  padding: 0;
+
+  cursor: pointer;
+  text-transform: uppercase;
+
+  @media (min-width: $breakpoint) {
+    display: none;
+
+    margin-bottom: 0;
+  }
+  &:before,
+  &:after {
+    @include transition();
+
+    position: absolute;
+    left: 0;
+
+    width: 24px;
+  }
+  &:before {
+    top: 0;
+
+    height: 4px;
+
+    content: "";
+
+    background: $bmc;
+  }
+  &:after {
+    bottom: 0;
+
+    height: 12px;
+
+    content: "";
+
+    border-top: 4px solid $bmc;
+    border-bottom: 4px solid $bmc;
+  }
+  &.opened:after,
+  &.opened:before {
+    top: 50%;
+
+    width: 28px;
+
+    background: $bmc;
+  }
+  &.opened:after {
+    height: 4px;
+
+    transform: translate(-2px, -50%) rotate(45deg);
+
+    border: none;
+  }
+  &.opened:before {
+    transform: translate(-2px, -50%) rotate(-45deg);
+  }
+}

@@ -1,0 +1,224 @@
+// /src/scss/_footer.scss
+
+.bottom-panel {
+  display: flex;
+
+  height: 60px;
+  margin-top: $gutter * 2;
+  margin-bottom: $gutter * 2;
+
+  background: $bmc;
+
+  align-items: center;
+  @media (min-width: $sm) {
+    height: 90px;
+    margin-top: 90px;
+    margin-bottom: 54px;
+  }
+  &--margin-top {
+    margin-top:0 !important;
+  }
+  .container {
+    display: flex;
+  }
+  &__phone {
+    @include font(24px, 400, 24px);
+    @include text-decoration;
+
+    color: white;
+
+    align-self: center;
+    @media (max-width: $sm - 1) {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  .svg-icon-handset {
+    width: 19px;
+    height: 19px;
+    margin-right: 15px;
+  }
+  .callback {
+    //height: 48px;
+    margin-left: auto;
+    @media (max-width: $sm - 1) {
+      display: none;
+    }
+  }
+}
+
+.footer {
+  padding-bottom: $gutter * 2;
+  @media (min-width: $sm) {
+    padding-bottom: 40px;
+  }
+  &__column {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    &:nth-of-type(4) {
+      align-items: flex-end;
+    }
+    @media (max-width: $breakpoint - 1) {
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        display: none;
+      }
+    }
+    @media (max-width: $sm - 1) {
+      &:nth-of-type(1) {
+        @include span(9);
+      }
+      &:nth-of-type(4) {
+        @include span(3);
+      }
+    }
+    @media (min-width: $sm) and (max-width: $breakpoint - 1) {
+      @include span(6);
+    }
+    @media (min-width: $breakpoint) {
+      @include span(4);
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        @include span(2);
+      }
+    }
+  }
+  .logo {
+    @media (min-width: $sm) {
+      margin-bottom: 85px;
+    }
+  }
+  &__mail {
+    @include text-decoration;
+    @include font(14px, 700, 22px);
+
+    display: none;
+
+    color: $black;
+    @media (min-width: $sm) {
+      display: block;
+    }
+    &:hover {
+      text-decoration: underline;
+
+      color: $bmc;
+    }
+  }
+  &__title {
+    @include font(14px, 700, 22px);
+
+    display: none;
+
+    margin-bottom: 12px;
+    text-align: right;
+
+    color: $bmc;
+    @media (min-width: $sm) {
+      display: block;
+    }
+  }
+  &__address {
+    @include font(14px, 400, 24px);
+
+    display: none;
+
+    margin-bottom: $gutter;
+
+    text-align: right;
+
+    color: $black;
+    @media (min-width: $sm) {
+      display: block;
+    }
+    @media (min-width: $breakpoint) {
+      margin-bottom: 25px;
+    }
+  }
+  .button {
+    @include text-decoration;
+    //@extend .btn--bmc;
+    //@extend .btn--medium;
+    //@extend .btn;
+
+    display: none;
+
+    padding-right: 20px;
+    padding-left: 20px;
+
+    justify-content: center;
+    @media (min-width: $sm) {
+      display: flex;
+    }
+  }
+  .svg-icon-geo {
+    width: 10px;
+    height: 15px;
+    margin-right: 10px;
+    margin-top: -2px;
+  }
+}
+
+.footer-nav {
+  &__li {
+    list-style: none;
+
+    border-top: 1px solid $border;
+  }
+  &__link {
+    @include transition();
+    @include text-decoration;
+    @include font(14px, 400, 50px);
+
+    display: block;
+    // height: 100%;
+
+    color: $black;
+    .footer-nav__li:hover & {
+      color: $bmc;
+    }
+  }
+}
+
+.onlinebees {
+  @include text-decoration;
+  @include transition;
+
+  font-size: 0;
+
+  display: flex;
+
+  margin-left: auto;
+
+  text-align: right;
+
+  color: $black;
+
+  align-items: center;
+  justify-content: flex-end;
+  @media (min-width: $sm) {
+    @include font(12px, 300, 12px);
+
+    margin-top: auto;
+  }
+  &:hover {
+    color: $bmc;
+  }
+}
+
+.onlinebees-svg {
+  @include transition(color);
+  width: 30px;
+  height: 35px;
+
+  color: #efd655;
+  @media (min-width: $sm) {
+    margin-left: 20px;
+  }
+}
+
+.onlinebees:hover .onlinebees-svg {
+  color: $bmc;
+}

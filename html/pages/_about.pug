@@ -1,0 +1,36 @@
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'О компании'}]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    article.article
+      h1= path[1].name
+      .user_content.clearfix
+        img(src="http://placehold.it/570x350", alt="Alt", style="float:left; margin-right: 30px;")
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eius, similique ratione nam provident deserunt at suscipit dolor maiores sint. Magni doloribus hic veniam minus blanditiis ipsa reiciendis iure placeat esse, ad. Beatae deleniti dolorum, accusantium animi? Suscipit consequuntur nobis, harum maiores magni culpa illum deserunt saepe ipsa exercitationem odio ab. Minima corporis beatae pariatur unde, velit minus odio perspiciatis.
+        h4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quae illo repellendus dolores maiores ut commodi neque, magni repellat quas officiis, consequatur nisi rem iure natus quia voluptatem a voluptate. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quae illo repellendus dolores maiores ut commodi neque, magni repellat quas officiis, consequatur nisi rem iure natus quia voluptatem a voluptate.
+        ol
+          - for (var a = 1; a < 5; a++)
+            li Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed sunt, optio reprehenderit dolore modi numquam vero amet ad ex veritatis nemo beatae nisi labore eveniet soluta doloribus sapiente error, distinctio quisquam laudantium tempore! Eum libero, consequatur, amet cum maxime aperiam.
+        ul
+          - for (var b = 1; b < 5; b++)
+            li Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed sunt, optio reprehenderit dolore modi numquam vero amet ad ex veritatis nemo beatae nisi labore eveniet soluta doloribus sapiente error, distinctio quisquam laudantium tempore! Eum libero, consequatur, amet cum maxime aperiam.
+        h4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque?
+        time(datetime='2016-08-30').date 30.08.2016
+    section
+      .gallery
+        h2 Фотогалерея
+        .row
+          - for (var x = 1; x <= 12; x++)
+            figure.gallery__item
+              a(href='/img/1920x1080.jpg', data-imagelightbox='gallery').gallery__link
+                img(src='http://placehold.it/250x175', alt='Alt ' + x).gallery__img
+        .button-group.button-group--center-items
+          a.button.button--large.button--main-color(href='#') Показать еще
+  include ../components/_bottom-panel

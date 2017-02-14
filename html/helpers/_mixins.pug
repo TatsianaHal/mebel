@@ -1,0 +1,34 @@
+//- Миксины проекта
+
+//- svg-иконка
+mixin svg-icon(name)
+  svg(class ='svg-icon svg-icon-' + name)
+    title=name
+    use(xlink:href='#' + name)
+
+//- инпут текст
+mixin input-type-text(placeholder)
+  .form-group
+    input#input-name.form-control(type='text', placeholder=placeholder)
+
+//- инпут текст
+mixin input-label(label, placeholder)
+  .form-group
+    label.control-label(for='input-name')=label + ":"
+    input#input-name.form-control(type='text', placeholder=placeholder)
+
+//- кнопка
+mixin button(size, color, text, submit)
+  if submit
+    button(type='submit' class='button button--' + color + ' button--' + size)&attributes(attributes)
+      if block
+        block
+      =text
+  else
+    a(href='#' class='button button--' + color + ' button--' + size)&attributes(attributes)
+      if block
+        block
+      =text
+//-
+  +button('sm-rounded', 'blue-filled', 'Купить', 'true')(class='add-to-cart')
+    +svg-icon('shopping-bag')

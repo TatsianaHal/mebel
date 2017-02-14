@@ -1,0 +1,46 @@
+// /src/scss/_vars.scss
+
+$site-width: 1200px;               // ширина сайта
+$gutter: 15px;                  // Размер отсупа
+
+// Шрифты используемые, в проекте
+$font-family: ProximaNova, sans-serif;  // Передаётся в _reset.scss
+$font: ProximaNova;                     // переменная, используемая в миксинах
+
+// Цвета, используемые в проекте
+$body-bgc: white;                 // цвет фона сайта
+// $black: #0f1116;               // Основной черный цвет, используется в основном для текста
+$black: #242424;                  // Основной черный цвет, используется в основном для текста
+$border: #ececec;                 // цвет бордера таблицы
+$scandalous-orange: #ff7049;
+$persian-green: #0dbca6;
+$snow-white: #fbf8f8;
+
+// Основные брендовые цвета
+$bmc: $scandalous-orange;         // $bmc - brand main color - основной цвет
+$bmc-hover:   lighten($bmc, 5%);
+$bmc-active:  darken($bmc, 5%);
+$bsc:         $persian-green;     // $bsc - brand second color - вторичный цвет
+$bsc-hover:   lighten($bsc, 5%);
+$bsc-active:  darken($bsc, 5%);
+$btc: green;                      // $btc - brand third color
+$btc-hover:   lighten($btc, 5%);
+$btc-active:  darken($btc, 5%);
+
+$breakpoint: 1200px;              // момент переключения навигационного меню
+// $adaptive: "false";               // true или false     // определяет, адаптивный ли сайт
+$adaptive: "true";                // true или false     // определяет, адаптивный ли сайт
+
+$sm: 544px;                       // Small screen / phone
+$md: 768px;                       // Medium screen / tablet
+$lg: 992px;                       // Large screen / desktop
+$xl: 1200px;                      // Extra large screen desktop
+$xxl: 1440px;                     // Wide desktop
+
+// Брендовые цвета социальных сетей
+$fb: #3b5998;     // facebook
+$ok: #ed812b;     // odnoklassniki
+$vk: #45668e;     // vkontakte
+$tw: #55acee;     // twitter
+$inst: #3f729b;   // instagram
+$yout: #cd201f;   // youtube

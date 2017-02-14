@@ -1,0 +1,23 @@
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Новости и акции',   href: '/news.html'},
+              {name: 'Особенности мебельного рынка России'}]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    article.article
+      h1= path[2].name
+      .user_content.clearfix
+        .user_content_img.label.label-news
+          img(src="http://placehold.it/570x350", alt="Alt")
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eius, similique ratione nam provident deserunt at suscipit dolor maiores sint. Magni doloribus hic veniam minus blanditiis ipsa reiciendis iure placeat esse, ad. Beatae deleniti dolorum, accusantium animi? Suscipit consequuntur nobis, harum maiores magni culpa illum deserunt saepe ipsa exercitationem odio ab. Minima corporis beatae pariatur unde, velit minus odio perspiciatis.
+        h4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quae illo repellendus dolores maiores ut commodi neque, magni repellat quas officiis, consequatur nisi rem iure natus quia voluptatem a voluptate.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed sunt, optio reprehenderit dolore modi numquam vero amet ad ex veritatis nemo beatae nisi labore eveniet soluta doloribus sapiente error, distinctio quisquam laudantium tempore! Eum libero, consequatur, amet cum maxime aperiam.
+        h4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, molestias.
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque?
+        time(datetime='2016-08-30').date 30.08.2016
+    .button-group
+      a(href='/articles.html').button.button--large.button--main-color вернуться к новостям и акциям
+  include ../components/_bottom-panel

@@ -1,0 +1,47 @@
+// /src/scss/components/_breadcrumbs.scss
+
+.breadcrumb {
+  display: flex;
+
+  margin: 11px 0;
+  padding: 5px 0;
+
+  list-style: none;
+
+  color: $black;
+  background-color: transparent;
+
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  // & > li + li:before {
+  &__list:not(:last-child):after,
+  &__link,
+  & > .active {
+    @include font(14px, 700, 24px);
+  }
+  &__list:last-child {
+    font-weight: 400;
+  }
+  &__list:not(:last-child):after {
+    font-weight: 900;
+
+    padding: 0 10px;
+
+    content: ">";
+
+    color: $bmc;
+  }
+  &__link {
+    @include transition();
+    //@include text-decoration;
+
+    color: $black;
+    &:hover {
+      // text-decoration: underline;
+      color: $bmc;
+    }
+  }
+  & > .active {
+    color: $black;
+  }
+}

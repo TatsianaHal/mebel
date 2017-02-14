@@ -1,0 +1,32 @@
+include ../helpers/_variables
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Каталог',   href: '/catalog.html'},
+              {name: 'Мебель для гостиной'}]
+-
+  var submenu = [
+                  {name: 'Мебель для кухни'},
+                  {name: 'Мебель для гостинной'},
+                  {name: 'Мебель для детской'},
+                  {name: 'Мебель для спальни'},
+                  {name: 'Мебель для прихожей'},
+                  {name: 'Мебель для ванной'}
+                ]
+//-
+  var submenu = navMenu[1].name.submenu
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    h1= path[2].name
+    .filter
+      // активный элемент <a class="filter__item active" href="#"></a>
+      each item in submenu
+        a(href="#").filter__item= item.name
+    .subcatalog
+      .row
+        each item in label
+          include ../components/_subcatalog-item
+    .button-group.button-group--center-items
+      a.button.button--large.button--main-color(href='#') Показать еще
+  include ../components/_bottom-panel

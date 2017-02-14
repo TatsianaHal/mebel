@@ -1,0 +1,14 @@
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Новости и акции'}]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    .h1= path[1].name
+    .row
+      - for (var x = 0; x < 4; x++)
+        include ../components/_news-item
+    .button-group.button-group--center-items
+      a(href='#').button.button--large.button--main-color Показать еще
+  include ../components/_bottom-panel

@@ -1,0 +1,171 @@
+// /src/scss/components/_pagination.scss
+
+// При использовании пагинатора, на странице родительскому контейнеру нужно
+// добавить класс .flex-column
+
+// Старый пагинатор
+
+// Размеры
+$pager-size: 4.8rem;                       // Размер элемента пагинатора
+$pager-border-size: 0.1rem;               // Толщина обводки
+// Шрифт
+$pager-font-color: #0f1116;              // #4d4d4d
+$pager-font-color-cur: black;
+// Рамка
+$pager-border-color: black;
+$pager-border-color-hover: transparent;
+$pager-border-color-cur: transparent;         // #b7b6b6
+$pager-border-radius: 20%;         // #b7b6b6
+// Фон
+$pager-background-color: transparent;
+$pager-background-color-hover: transparent;
+$pager-background-color-cur: transparent;
+// Оформление стрелок
+$pager-arrow-color: white;
+$pager-arrow-color-hover: white;
+$pager-arrow-background: rgba(#2f9b86, 0.5);
+$pager-arrow-background-hover: #2f9b86;
+
+
+.pager_string {
+  display: flex;
+
+  width: 100%;
+  margin: auto auto 4rem;
+
+  align-items: center;
+  justify-content: center;
+  .back,
+  .next,
+  & a[href]:not([class]),
+  & a[href]:not([class]):visited,
+  & .cur {
+    border-radius: $pager-border-radius;
+    // высота строки - высота элемента минус border сверху/снизу
+
+    @include font(1.5rem, 300, $pager-size - $pager-border-size * 2);
+    // margin: 0 0.5rem;
+  }
+  & .cur {
+    font-weight: 700;
+  }
+  & a[href]:not([class]),
+  & a[href]:not([class]):visited {
+    display: inline-block;
+
+    width: $pager-size;
+    height: $pager-size;
+
+    text-align: center;
+    text-decoration: none;
+
+    color: $pager-font-color;
+    border: $pager-border-size solid $pager-border-color;
+    background-color: $pager-background-color;
+    &:hover {
+      font-weight: 700;
+
+      border: $pager-border-size solid $pager-border-color-hover;
+      background-color: $pager-background-color-hover;
+    }
+  }
+  & a[href]:not([class]) {
+    margin-right: 0.1rem;
+  }
+  .back,
+  .next {
+    // font-size: 0;                   // Чтобы убрать стрелки, которые генерирует пагинатор
+    // position: relative;
+    width: $pager-size;
+    height: $pager-size;
+    margin: 0;
+
+    text-align: center;
+
+    border: $pager-border-size solid $pager-border-color;
+    background-color: $pager-arrow-background;
+    &:hover {
+      border: $pager-border-size solid $pager-border-color-hover;
+      background-color: $pager-arrow-background-hover;
+    }
+  }
+  .back {
+    margin-right: 2rem;
+    // миксин генерирует стрелку в псевдоэлементе before см. _mixins.scss
+    // @include arrow(left, 1.4rem, 0.4rem, $pager-arrow-color, $pager-arrow-color-hover) // $direction: up, down, left, right
+  }
+  .next {
+    margin-left: 1.5rem;
+    // @include arrow(right, 1.4rem, 0.4rem, $pager-arrow-color, $pager-arrow-color-hover) // $direction: up, down, left, right
+  }
+  & .cur {
+    width: $pager-size;
+    height: $pager-size;
+    margin-right: 0.1rem;
+
+    text-align: center;
+
+    color: $pager-font-color-cur;
+    border: $pager-border-size solid $pager-border-color-cur;
+    background-color: $pager-background-color-cur;
+  }
+}
+
+// Новый пагинатор (Для Yii 2)
+// .pagination {
+//   display: flex;
+//   // padding: 0;
+
+//   margin: auto auto $padding;
+
+//   list-style: none;
+
+//   justify-content: center;
+//   & li span,
+//   & li a {
+//     display: inline-block;
+
+//     width: 5.3rem;
+//     height: 4.8rem;
+//     margin-right: 0.6rem;
+
+//     text-align: center;
+
+//     color: $black;
+//     background-color: #e7e7ea;
+
+//     @include font(1.4rem, 400, 4.8rem);
+//   }
+//   & li a,
+//   & li a:link,
+//   & li a:visited {
+//     @extend %text-decoration;
+//   }
+//   & li a:hover {
+//     font-weight: 700;
+
+//     color: white;
+//     // background-color: $brand-color;
+//   }
+//   & li.active a {
+//     font-weight: 400;
+
+//     cursor: default;
+
+//     color: $black;
+//     background-color: white;
+//   }
+//   li.prev,
+//   li.next {
+//     & a,
+//     & span {
+//       width: 21rem;
+//     }
+//   }
+//   li.prev {
+//     margin-right: 2rem;
+//   }
+//   li.next {
+//     margin-left: 1.4rem; // 2rem - 0.6rem расстояние м/у ссылками
+//   }
+// }

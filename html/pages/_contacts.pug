@@ -1,0 +1,72 @@
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Контакты'}]
+
+-
+  var contacts = 'true'
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    h1= path[1].name
+    .contacts
+      section
+        .row
+          .contacts__content
+            p Мебельная компания «Мебель Дома»
+            br
+            br
+            br
+            p <strong>Адрес</strong>: г. Пенза,<br>ул. Московская, 73 а, строение 4<br><strong>Телефон</strong>: 8 (800) 555-23-56<br><strong>Mail</strong>: <a href="mailto:mebeldoma@yandex.ru">mebeldoma@yandex.ru</a>
+            br
+            br
+            br
+            p <strong>Режим работы</strong>:<br>Ежедневно с 8:00 до 17:00<br> Выходной — суббота, воскресенье.
+          .contacts__map
+            img(src='/img/map.jpg', alt='Alt')
+            //-include ../components/_map
+  section
+    .contacts-form
+      .container
+        .h1 Напишите нам
+        p Есть вопросы или предложения?
+        p Вы можете отправить нам сообщение! Все поля являются обязательными.
+        form.form.form-contacts
+          .row
+            .form-contacts__column
+              +input-type-text('Фамилия Имя Отчество')
+              +input-type-text('Телефон')
+              +input-type-text('E-mail')
+            .form-contacts__column
+              .form-group
+                //-label.control-label(for='area-name') Название
+                textarea#area-name.form-control(placeholder="Сообщение")
+              .form-submit
+                img(src='/img/captcha.jpg', alt='Alt')
+                .form-group
+                  button(type='submit').button.button--medium.button--second-color-filled Отправить
+  include ../components/_bottom-panel
+    //-section
+      .box-shadow
+        h2.form__title.background Вы можете связаться с нами:
+        form.form
+          .form__wrapper
+            .form__column
+              .form__group
+                input(type=text, placeholder="Ваше имя").form__input
+              .form__group
+                input(type=text, placeholder="Ваш телефон или email").form__input
+              .form__group
+                label.file-upload
+                  span.button Выберите файл
+                  mark Приложить резюме
+                  input(type='file')
+            .form__column
+              textarea(placeholder="Введите текст письма")
+          a(href='#modal-window').form__submit.popup-link.js-popup Отправить
+//- a(href='#modal-window').popup-link.popup-js Модальное окно
+//- #modal-window.white-popup-block.mfp-hide
+//-#modal-window.popup.mfp-hide
+  p Спасибо за ваше обращение!
+  p Мы свяжемся с Вами в ближайшее время!
+  button(type='submit').js-popup-submit Закрыть

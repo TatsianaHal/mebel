@@ -1,0 +1,21 @@
+// /src/scss/_media.scss
+
+// Классы hidden-sm, *-md, *-lg, *-xl, *-xxl
+// Скрывают элемент, при разрешении меньше, чем *-sm, *-md, *-lg, *-xl, *-xxl
+@each $class, $breakpoint in (sm, $sm), (md, $md), (lg, $lg), (xl, $xl), (xxl, $xxl) {
+  .hidden-#{$class} {
+    display: none;
+
+    @media (min-width: $breakpoint) {
+      display: block;
+    }
+  }
+}
+
+
+// @include media($min, $max){} // миксин сокращает медиа-запрос
+@mixin media($min, $max) {
+  @media (min-width: $min) and (max-width: $max - 1) {
+    @content;
+  }
+}

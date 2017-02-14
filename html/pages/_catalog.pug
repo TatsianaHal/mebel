@@ -1,0 +1,29 @@
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Каталог'}]
+
+//- Используется в catalog-item
+-
+  var subPathHref = '/subcatalog.html'
+-
+  var submenu = [
+                  {name: 'Мебель для кухни'},
+                  {name: 'Мебель для гостинной'},
+                  {name: 'Мебель для детской'},
+                  {name: 'Мебель для спальни'},
+                  {name: 'Мебель для прихожей'},
+                  {name: 'Мебель для ванный'}
+                ]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    h1= path[1].name
+    .catalog
+      .row
+        // hit - хит продаж, new - новинка, action - Акция, discount - скидка, sale - распродажа
+        - for (var x = 0; x < 7; x++)
+          include ../components/_catalog-item
+  //- include ../components/_pagination
+  include ../components/_bottom-panel
+

@@ -1,0 +1,18 @@
+include ../helpers/_variables
+-
+  var path = [{name: 'Главная',   href: '/'},
+              {name: 'Образцы-материалов', href: '/catalog-2.html'},
+              {name: 'Ткани для мягкой мебели'}]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    article.article
+      h1= path[2].name
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eius, similique ratione nam provident deserunt at suscipit dolor maiores sint. Magni doloribus hic veniam minus blanditiis ipsa reiciendis iure placeat esse, ad. Beatae deleniti dolorum, accusantium animi? Suscipit consequuntur nobis, harum maiores magni culpa illum deserunt saepe ipsa exercitationem odio ab. Minima corporis beatae pariatur unde, velit minus odio perspiciatis.
+    section
+      .figure
+        - for (var x = 0; x < 2; x++)
+          include ../components/_gallery-page
+  //- include ../components/_pagination
+  include ../components/_bottom-panel

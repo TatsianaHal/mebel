@@ -1,0 +1,81 @@
+// /src/scss/_grid.scss
+
+// используется в сочетании с основным контейнером .container
+// аналог row у bootstrap
+//@include flex-wrap;
+@mixin flex-wrap($gutter: $gutter) {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 #{ - $gutter} 0 #{ - $gutter};
+}
+
+// используется в сочетании с основным контейнером .container
+// аналог row у bootstrap, но с учетом flex-wrap: wrap
+.row {
+  @include flex-wrap;
+}
+
+//@include column-in-row; // см. _grid
+// миксин задаёт сколько элементов в ряду будет находиться
+// указывать просто цифру
+// @mixin column-in-row($number-of-columns: 3, $gutter: $gutter){
+//   margin-left: $gutter;
+//   margin-right: $gutter;
+//  width: calc(100% / #{$number-of-columns} - #{$gutter} * 2);
+// }
+
+//@include span(); // см. _grid
+// миксин указывает, сколько колонок из сетки занимает элемент
+// @mixin span($column-width: 1, $gutter: $gutter) {
+//   margin-left: $gutter;
+//   margin-right: $gutter;
+//   width: calc( #{percentage($column-width / 12 )} - (#{$gutter} * 2) );
+// }
+
+// @include half;
+@mixin half {
+  width: calc((100% - (#{$gutter} * 2)) / 2);
+
+  &:not(:nth-of-type(2n)) {
+    margin-right: $gutter * 2;
+  }
+}
+
+// @include third;
+@mixin third {
+  width: calc((100% - (#{$gutter} * 2 * 2)) / 3);     // 6rem = 1.5 * 2 * 2   // два двойных пробела
+  &:not(:nth-of-type(3n)) {
+    margin-right: $gutter * 2;
+  }
+}
+
+// @include fourth;
+@mixin fourth {
+  width: calc((100% - (#{$gutter} * 2 * 3)) / 4);   // 9rem = 1.5 * 2 * 3   // три двойных пробела
+  &:not(:nth-of-type(4n)) {
+    margin-right: $gutter * 2;
+  }
+}
+
+
+// миксин задаёт количество элементов в ряду указывать просто цифру
+// использовать в сочетании с .row или @mixin flex-wrap
+//@include items-in-row; // см. _grid
+@mixin items-in-row($qty: 4, $gutter: $gutter) {
+  width: calc(100% / #{$qty} - #{$gutter} * 2);
+  margin-left: $gutter;
+  margin-right: $gutter;
+}
+
+// миксин задаёт ширину элемента, в колонках сетки
+// по-умолчанию - 12 колонок
+// использовать в сочетании с .row или @mixin flex-wrap
+//@include $span; // см. _grid
+//@include span(4);  // элемент занимает 4 колонки
+//@include span(6);  // элемент занимает 6 колонок
+//@include span(12); // элемент занимает всю ширину
+@mixin span($qty: 4, $columns: 12, $gutter: $gutter) {
+  width: calc(#{percentage($qty/$columns)} - #{$gutter * 2});
+  margin-left: $gutter;
+  margin-right: $gutter;
+}

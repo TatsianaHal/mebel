@@ -1,0 +1,12 @@
+section
+  .bottom-panel(class={"bottom-panel--margin-top" : contacts})
+    .container
+      form(action="#", method="post").bottom-search
+        +input-label('Поиск по сайту', 'Введите запрос')
+        button(type='submit').bottom-search__submit
+          +svg-icon('search')
+          | Найти
+      a(href='tel:+78005552356').bottom-panel__phone
+        +svg-icon('handset')
+        |8 800 555 23 56
+      a(href='#callback').callback.button.button--medium.button--black-filled.js-popup заказать звонок

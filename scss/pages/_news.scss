@@ -1,0 +1,109 @@
+// /src/scss/vendor/_news.scss
+// Страница новости и 1 новост
+
+.news-post {
+  @include span(12);
+  @include text-decoration;
+  @include transition(border);
+  @include font(14px, 300, 22px);
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: $gutter;
+
+  color: $black;
+  border: 1px solid $border;
+  background-color: white;
+  @media (min-width: $sm) {
+    flex-direction: row;
+
+    height: 225px;
+  }
+  @media (min-width: $md) {
+    @include span(6);
+  }
+  &:hover {
+    border: 1px solid $bmc;
+  }
+  &__img {
+    @media (min-width: $sm) {
+      margin-right: $gutter;
+    }
+    @media (min-width: $sm) and (max-width: $md - 1) {
+      min-width: 270px;
+    }
+    @media (min-width: $md) {
+      width: 50%;
+      min-width: 50%;
+    }
+    img {
+      @include img;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $sm) {
+      padding-bottom: 8px;
+    }
+  }
+  &__excerpt {
+    position: relative;
+    //display: flex;
+    //flex-direction: column;
+    overflow: hidden;
+
+    margin-bottom: $gutter;
+    @media (min-width: $sm) {
+      height: 146px;
+      max-height: 146px;
+    }
+    &:after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      width: 100px;
+      height: 20px;
+
+      background: linear-gradient(to left, rgba(white,1) 0%, rgba(white,0) 100%);
+      @media (min-width: $md) {
+        content: "";
+      }
+    }
+  }
+  &__title {
+    @include transition(color);
+    @include font(18px, 700, 24px);
+
+    display: block;
+
+    margin: 13px 0;
+
+    text-transform: uppercase;
+
+    color: #341819;
+    @media (min-width: $sm) {
+      margin: 13px 0 19px 0;
+    }
+  }
+  &:hover &__title {
+    color: $bmc;
+  }
+  &__text {
+    display: block;
+
+    padding-top: 1px;
+  }
+  .date {
+    margin-top: auto;
+  }
+}
+
+.news {
+  //
+}
