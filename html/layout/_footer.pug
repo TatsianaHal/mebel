@@ -8,6 +8,12 @@ footer.footer
           span Дома
         .footer__title E-mail:
         a(href="mailto:mebeldoma@yandex.ru", target="_blank").footer__mail mebeldoma@yandex.ru
+        .social
+          each item, i in glyph
+            a(href=item.href, target="_blank", class='social__link social__link-' + item.icon)
+              svg.svg-social(class='svg-social-' + item.icon)
+                //-use(xlink:href='svg.svg#' + item.icon + '-glyph', class=item.icon)
+                use(xlink:href='#' + item.icon + '-glyph', class=item.icon)
       .footer__column
         ul.footer-nav
           li.footer__title Главная

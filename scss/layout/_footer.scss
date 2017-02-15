@@ -113,12 +113,14 @@
     display: none;
 
     margin-bottom: 12px;
-    text-align: right;
 
     color: $bmc;
     @media (min-width: $sm) {
       display: block;
     }
+  }
+  &__column:nth-of-type(4) &__title {
+    text-align: right;
   }
   &__address {
     @include font(14px, 400, 24px);
