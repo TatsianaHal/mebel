@@ -1,44 +1,47 @@
 //- Старый пагинатор
 
-.pager_string
-  a#leftPage.back(href='/news/page/3/') <
-  a(href='/news/page/1/') 1
-  a(href='/news/page/2/') 2
-  a(href='/news/page/3/') 3
-  .cur 4
-  a(href='/news/page/5/') 5
-  a(href='/news/page/6/') 6
-  a#rightPage.next(href='/news/page/5/') >
+//-
+  .pager_string
+    a#leftPage.back(href='/news/page/3/') <
+    a(href='/news/page/1/') 1
+    a(href='/news/page/2/') 2
+    a(href='/news/page/3/') 3
+    .cur 4
+    a(href='/news/page/5/') 5
+    a(href='/news/page/6/') 6
+    a#rightPage.next(href='/news/page/5/') >
 
 
 //- Новый пагинатор
 
-//- ul.pagination
-//-   //- li.prev.disabled
-//-     span Предыдущая страница
-//-   li.prev
-//-     a(href='#') Предыдущая страница
-//-   li.active
-//-     a(href='#') 1
-//-   li
-//-     a(href='#') 2
-//-   li
-//-     a(href='#') 3
-//-   li
-//-     a(href='#') 4
-//-   li
-//-     a(href='#') 5
-//-   li
-//-     a(href='#') 6
-//-   li
-//-     a(href='#') 7
-//-   li
-//-     a(href='#') 8
-//-   li
-//-     a(href='#') 9
-//-   li
-//-     a(href='#') 10
-//-   li.next
-//-     a(href='#') Следующая страница
-//-   //- li.next.disabled
-//-     span Следующая страница
+ul.pagination
+  //<li class="prev disabled"><span>Предыдущая</span></li>
+  //- li.prev.disabled
+    span Предыдущая страница
+  li.prev
+    a(href='#', rel='prev') Предыдущая страница
+  li.active
+    a(href='#') 1
+  li
+    a(href='#') 2
+  li
+    a(href='#') 3
+  li
+    a(href='#') 4
+  li
+    a(href='#') 5
+  li
+    a(href='#') 6
+  li
+    a(href='#') 7
+  li
+    a(href='#') 8
+  li
+    a(href='#') 9
+  li
+    a(href='#') 10
+  li.next
+    a(href='#', rel='next') Следующая страница
+  //<li class="next disabled"><span>Следующая</span></li>
+  //- li.next.disabled
+    span Следующая страница
