@@ -27,6 +27,10 @@
     //background-position: center center;
     //// background-image: url('');
     //background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position:  center top;
+    background-size: cover;
     img {
       @include img;
     }

@@ -20,7 +20,6 @@
 
     width: 40px;
 
-
     color: white;
     background: $black;
 
@@ -90,6 +89,7 @@
   }
   .callback {
     @include font(12px, 300, 12px);
+
     max-height: 100%;
 
     @media (max-width: $sm - 1) {
@@ -214,9 +214,8 @@
     flex-grow: 0;
 
     &:not(:last-of-type) {
-      border-bottom: 1px solid $border;
-      @media (min-width: $breakpoint) {
-        border: none;
+      @media (max-width: $breakpoint - 1) {
+        border-bottom: 1px solid $border;
       }
     }
   }
@@ -383,11 +382,13 @@
   display: block;
 
   width: 24px;
-  height: 21px;
+  height: 20px;
   padding: 0;
 
   cursor: pointer;
   text-transform: uppercase;
+  //background;
+  background: linear-gradient(to bottom, transparent 8px, $bmc 8px, $bmc 12px, transparent 12px);
 
   @media (min-width: $breakpoint) {
     display: none;
@@ -401,41 +402,30 @@
     position: absolute;
     left: 0;
 
-    width: 24px;
-  }
-  &:before {
-    top: 0;
-
+    width: 100%;
     height: 4px;
 
     content: "";
 
     background: $bmc;
   }
+  &:before {
+    top: 0;
+  }
   &:after {
     bottom: 0;
-
-    height: 12px;
-
-    content: "";
-
-    border-top: 4px solid $bmc;
-    border-bottom: 4px solid $bmc;
+  }
+  &.opened {
+    background: none;
   }
   &.opened:after,
   &.opened:before {
     top: 50%;
 
     width: 28px;
-
-    background: $bmc;
   }
   &.opened:after {
-    height: 4px;
-
     transform: translate(-2px, -50%) rotate(45deg);
-
-    border: none;
   }
   &.opened:before {
     transform: translate(-2px, -50%) rotate(-45deg);
