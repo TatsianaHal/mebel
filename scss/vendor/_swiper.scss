@@ -1,0 +1,459 @@
+// /src/scss/vendor/_swiper.scss
+// настройка слайдера swiper http://idangero.us/swiper/api/
+
+// слайдер на главной странице
+.main-slider {
+  position: relative;
+
+  margin: 0 auto;
+  margin-bottom: 58px;
+  &,
+  &__container,
+  &__wrapper,
+  &__slide {
+    width: 100%;
+    height: 350px;
+    @media (min-width: $md) and (max-width: $breakpoint - 1) {
+      height: 610px;
+    }
+    @media (min-width: $breakpoint) {
+      height: 640px;
+    }
+  }
+  &__slide {
+    position: relative;
+
+    //background-repeat: no-repeat;
+    //background-position: center center;
+    //// background-image: url('');
+    //background-size: cover;
+    img {
+      @include img;
+    }
+  }
+  &__banner {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+
+    display: flex;
+
+    box-sizing: border-box;
+    width: 570px;
+    max-width: calc(100% - #{$gutter} * 2);
+    min-height: 150px;
+    padding: $gutter;
+
+    transform: translate(-50%, 0);
+
+    background-color: rgba($bmc, 0.92);
+
+    align-items: center;
+    justify-content: center;
+    &,
+    & p {
+      @include font(24px, 600, 30px);
+
+      width: 500px;
+
+      text-align: center;
+
+      color: white;
+    }
+  }
+  // точки
+  &__pagination {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+
+    width: 100%;
+    max-width: $site-width;
+
+    transform: translate(-50%, 100%);
+    @media (min-width: $sm) {
+      bottom: -20px;
+    }
+    & .swiper-pagination-bullet {
+      width: 13px;
+      height: 13px;
+
+      opacity: 1;
+      border: 2px solid #b0b0b0;
+      background: transparent;
+      &:not(:last-child) {
+        margin-right: 25px;
+      }
+    }
+    & .swiper-pagination-bullet-active {
+      border: 2px solid $bmc;
+      background: $bmc;
+    }
+  }
+  // стрелки слайдера
+  &__prev,
+  &__next {
+    @include transition();
+    @include arrow(15px, 3px, white);
+
+    position: absolute !important;
+    top: auto;
+    bottom: 30px;
+
+    display: none;
+
+    width: 80px;
+    height: 60px;
+
+    background: $black;
+    @media (min-width: $sm) {
+      display: block;
+    }
+    @media (min-width: $md) {
+      bottom: 50px;
+    }
+    &:hover,
+    &:active {
+      background: $bmc;
+    }
+    &:after {
+      right: auto;
+      left: 50%;
+    }
+  }
+  &__prev {
+    @include rotate-arrow("left");
+
+    left: calc(50% - #{$gutter});
+
+    transform: translateX(-100%);
+  }
+  &__next {
+    @include rotate-arrow("right");
+
+    right: calc(50% - #{$gutter});
+
+    transform: translateX(100%);
+  }
+}
+
+// Слайдер "Популярные товары" на главной
+.subcatalog-slider {
+  //@extend .container;
+  position: relative;
+  &,
+  &__container,
+  &__wrapper {
+    width: 100%;
+  }
+  &__container {
+    padding-top: 1px;
+  }
+  &__slide {
+    display: flex;
+    flex-direction: column;
+  }
+  .item {
+    box-sizing: border-box;
+  }
+  &__slide .item {
+    width: 100%;
+  }
+  // стрелки слайдера
+  &__prev,
+  &__next {
+    @include transition();
+    @include arrow(10px, 2px, white);
+
+    position: absolute !important;
+    top: 125px;
+
+    width: 55px;
+    height: 40px;
+    margin-top: 0;
+
+    background: $black;
+    &:hover,
+    &:active {
+      background: $bmc;
+    }
+    &:after {
+      right: auto;
+      left: 50%;
+    }
+  }
+  &__prev {
+    @include rotate-arrow("left");
+
+    left: 0;
+  }
+  &__next {
+    @include rotate-arrow("right");
+
+    right: 0;
+  }
+}
+
+.news-slider {
+  display: none;
+
+  padding-bottom: 65px;
+
+  background-color: $bmc;
+  color: white;
+  @media (min-width: $md) {
+    display: block;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  &__subcontainer {
+    max-width: 710px;
+    margin: 0 auto;
+    padding: 0 $gutter;
+    @media (min-width: $lg) and (max-width: $breakpoint - 1) {
+      max-width: 890px;
+    }
+    // position: relative;
+    @media (min-width: $breakpoint) {
+      max-width: 1000px;
+    }
+    &:first-of-type & {
+      display: flex;
+
+      justify-content: flex-end;
+    }
+    .h4 {
+      @include font(16px, 700, 80px);
+
+      text-align: right;
+      text-transform: uppercase;
+
+      color: inherit;
+    }
+  }
+  &__slide {
+    display: flex;
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+  &__column {
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+    height: 100%;
+    padding: 0 $gutter;
+
+    // color: white;
+
+    align-items: flex-start;
+  }
+  time {
+    // color: white;
+    @include font(14px, 700, 14px);
+
+    display: block;
+
+    margin-bottom: 31px;
+  }
+  &__title {
+    @include font(24px, 600, 30px);
+
+    margin-bottom: 20px;
+  }
+  &__text {
+    @include font(16px, 300, 26px);
+
+    overflow: hidden;
+
+    min-height: 208px;
+    max-height: 208px;
+    margin-bottom: 48px;
+  }
+  &__button {
+    //@extend .btn;
+    //@extend .btn--white;
+    //@extend .btn--large;
+    margin: 0;
+  }
+  //&__img {
+  //  width: 100%;
+  //  height: 390px;
+  //
+  //  border: 10px solid white;
+  //  background-repeat: no-repeat;
+  //  background-position: center;
+  //  background-size: cover;
+  //  img {
+  //    @include img;
+  //  }
+  //}
+  &__img {
+    @include img;
+
+    border: 10px solid white;
+  }
+  // стрелки слайдера
+  &__prev,
+  &__next {
+    top: 50%;
+
+    width: 50px;
+    height: 100px;
+    margin-top: 0;
+
+    transform: translateY(-50%);
+
+    background: none;
+    @media (min-width: $breakpoint) {
+      width: 80px;
+      height: 120px;
+    }
+    &:before {
+      @include transition(border-color);
+      position: absolute;
+      top: 50%;
+
+      display: block;
+
+      width: 40px;
+      height: 40px;
+
+      content: "";
+
+      border-bottom: 9px solid rgba(white, 0.4);
+    }
+    &:hover:before {
+      border-bottom: 9px solid white;
+    }
+  }
+  &__prev {
+    left: 0;
+    &:before {
+      left: 50%;
+
+      transform: translate(-$gutter, -50%) rotate(45deg);
+
+      border-left: 9px solid rgba(white, 0.4);
+    }
+    &:hover:before {
+      border-left: 9px solid white;
+    }
+  }
+  &__next {
+    right: 0;
+    &:before {
+      right: 50%;
+
+      transform: translate($gutter, -50%) rotate(-45deg);
+
+      border-right: 9px solid rgba(white, 0.4);
+    }
+    &:hover:before {
+      border-right: 9px solid white;
+    }
+  }
+}
+
+.articles-slider {
+  position: relative;
+
+  padding: 0 $gutter;
+  &,
+  &__container,
+  &__wrapper {
+    width: 100%;
+  }
+  &__container {
+    padding-top: 1px;
+  }
+  .article-item {
+    //
+  }
+  // стрелки слайдера
+  &__prev,
+  &__next {
+    @include transition();
+    @include arrow(10px, 2px, white);
+
+    position: absolute !important;
+    top: 78px;
+
+    width: 55px;
+    height: 40px;
+    margin-top: 0;
+
+    background: $black;
+    &:hover,
+    &:active {
+      background: $bmc;
+    }
+    &:after {
+      right: auto;
+      left: 50%;
+    }
+  }
+  &__prev {
+    @include rotate-arrow("left");
+
+    left: 0;
+  }
+  &__next {
+    @include rotate-arrow("right");
+
+    right: 0;
+  }
+}
+
+// Слайдер в галерее, карточка продукта
+.product-slider {
+  position: relative;
+  &__slide {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: center;
+  }
+  &__img {
+    font-size: 0;
+  }
+  &__prev,
+  &__next {
+    @include transition();
+    @include arrow(10px, 2px, white);
+
+    position: absolute !important;
+    //top: 125px;
+
+    width: 55px;
+    height: 40px;
+    margin-top: 0;
+
+    transform: translateY(-50%);
+
+    background: $black;
+    &:hover,
+    &:active {
+      background: $bmc;
+    }
+    &:after {
+      right: auto;
+      left: 50%;
+    }
+  }
+  &__prev {
+    @include rotate-arrow("left");
+
+    left: 0;
+  }
+  &__next {
+    @include rotate-arrow("right");
+
+    right: 0;
+  }
+}

@@ -3,5 +3,5 @@ css/
 js/
 node_modules/
 source/
-vendor/
+/vendor/
 svg.html

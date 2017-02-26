@@ -1,0 +1,179 @@
+// /src/scss/_popup.scss
+// всплывающие окна
+
+.mfp-container {
+  @media (min-width: $sm) {
+    padding-left: $gutter;
+    padding-right: $gutter;
+  }
+}
+
+.mfp-bg {
+  background-color: rgba(black, 0.75);
+}
+
+.mfp-close-btn-in .mfp-close {
+  font-size: 0;
+
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid currentcolor;
+  border-radius: 50%;
+  background-color: lightgreen;
+
+  &:before,
+  &:after {
+    @include transition();
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    display: block;
+
+    width: 100%;  // 1,4142 - корень из 2х
+    height: 0;
+
+    content: "";
+    transform-origin: center;
+
+    border-top: 3px solid currentcolor;
+  }
+
+  &:before {
+    transform: translateY(-50%) rotate(45deg) scale(0.618);
+  }
+
+  &:after {
+    transform: translateY(-50%) rotate(-45deg) scale(0.618);
+  }
+}
+
+//.popup-link {
+//  @include text-decoration;
+//  outline: none;
+//}
+
+.popup {
+  position: relative;
+
+  max-width: $site-width;
+  margin: 0 auto;
+  //padding: 40px 30px;
+  //border: 1px solid #efecf1;
+  // border: 1px solid #000;
+  //background-color: white;
+
+  //&__title {
+  //  text-align: center;
+  //}
+  //
+  //&__promo {
+  //  margin-bottom: 50px;
+  //  padding: 0 $gutter;
+  //  text-align: center;
+  //}
+}
+
+// Всплывающее окно Обратный звонок
+.popup-callback {
+  max-width: calc(100% - #{$gutter} * 2);
+  min-height: 95px;
+  padding: 55px 20px 20px 20px;
+
+  background-color: $bsc;
+  @media (min-width: $md) {
+    max-width: 970px;
+    padding: 25px 65px 25px 35px;
+  }
+
+  .mfp-close {
+    width: 30px;
+    height: 30px;
+
+    color: white;
+    background-color: transparent;
+    @media (min-width: $md) {
+      top: 50%;
+
+      transform: translateY(-50%);
+    }
+  }
+}
+
+// Всплывающее окно на странице Продукта
+.popup-product {
+  display: flex;
+
+  max-width: 935px;
+
+  background-color: #f1f1f1;
+  h2 {
+    margin-bottom: 14px;
+
+    text-transform: none;
+
+    color: $black;
+  }
+
+  h2,
+  p {
+    text-align: center;
+  }
+  &__aside {
+    display: none;
+
+    width: 300px;
+    min-width: 300px;
+    padding-top: 17px;
+
+    background: white;
+    @media (min-width: $md) {
+      display: block;
+    }
+  }
+  .item {
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 0;
+    padding-bottom: $gutter;
+
+    box-shadow: none;
+  }
+  &__form {
+    width: 100%;
+    padding-right: $gutter;
+    padding-left: $gutter;
+    @media (min-width: $md) {
+      width: calc(100% - 300px);
+    }
+    @media (min-width: $sm) and (max-width: $breakpoint - 1) {
+      padding-right: $gutter * 2;
+      padding-left: $gutter * 2;
+    }
+    @media (min-width: $breakpoint) {
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+    p {
+      @include font(14px, 400, 22px);
+
+      color: #757575;
+    }
+  }
+  .mfp-close {
+    top: 15px;
+    right: 15px;
+
+    width: 30px;
+    height: 30px;
+
+    color: $black;
+    background-color: transparent;
+  }
+}

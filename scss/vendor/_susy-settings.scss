@@ -1,0 +1,25 @@
+// /scss/vendor/_susy-settings.scss
+// файл инициализации библиотеки миксинов susy
+
+// глобальный мап
+$susy: (
+  columns: 12,              // 12 колонок
+  gutters: 1/4,             // расстояние между колонок
+  math: fluid,              // процентное вычисление
+  output: float,            // вывод float'ами
+  //gutter-position: inside,  // расстояние м/у колонками паддингами
+  gutter-position: after,
+  global-box-sizing: border-box,
+  container: 1200px,
+  container-position: center,
+  //container: 146rem,
+  // мап, для включения отладочной сетки
+  debug: (
+     //image: show,         // показать сетку
+    image: hide,            // скрыть сетку
+    color: rgba(yellow, 0.5),
+    output: background,
+    // output: overlay,
+    toggle: top right,
+  )
+);
