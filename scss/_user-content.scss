@@ -142,12 +142,15 @@
       font-weight: 700;
       line-height: 23px;
 
-      position: absolute;
-      top: 0;
-      left: 0;
+      display: inline-block;
+      //position: absolute;
+      //top: 0;
+      //left: 0;
 
       width: 23px;
       height: 23px;
+      margin-right: 10px;
+      margin-left: -33px;
 
       text-align: center;
     }
