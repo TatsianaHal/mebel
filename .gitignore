@@ -2,6 +2,6 @@
 css/
 js/
 node_modules/
-source/
+source/PSD/
 /vendor/
-svg.html
+*.html
