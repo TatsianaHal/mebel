@@ -19,29 +19,14 @@ ul.pagination
   //- li.prev.disabled
     span Предыдущая страница
   li.prev
-    a(href='#', rel='prev') Предыдущая страница
+    a(href='#', rel='prev') Назад
   li.active
     a(href='#') 1
-  li
-    a(href='#') 2
-  li
-    a(href='#') 3
-  li
-    a(href='#') 4
-  li
-    a(href='#') 5
-  li
-    a(href='#') 6
-  li
-    a(href='#') 7
-  li
-    a(href='#') 8
-  li
-    a(href='#') 9
-  li
-    a(href='#') 10
+  - for (var a = 2; a <= 5; a++)
+    li
+      a(href='#')=a
   li.next
-    a(href='#', rel='next') Следующая страница
+    a(href='#', rel='next') Вперёд
   //<li class="next disabled"><span>Следующая</span></li>
   //- li.next.disabled
     span Следующая страница
