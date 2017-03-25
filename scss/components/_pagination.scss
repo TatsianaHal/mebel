@@ -12,6 +12,7 @@ $pager-size: 46px;                       // Размер элемента паг
 $pager-border-color: $border;
 $pager-border-color-hover: transparent;
 $pager-border-color-cur: transparent;
+$pager-border-color-disabled: $border;
 //$pager-border-radius: $pager-size / 2;
 $pager-border-radius: 0;
 $pager-border-size: 1px;
@@ -129,7 +130,9 @@ $pager-arrow-background-hover: #2f9b86;
   // padding: 0;
 
   margin: auto auto $gutter;
+
   list-style: none;
+
   justify-content: center;
 
   li {
@@ -144,13 +147,16 @@ $pager-arrow-background-hover: #2f9b86;
   & li a {
     @include text-decoration;
     @include font($pager-font-size, $pager-font-weight, $pager-font-height);
+
     display: inline-block;
     overflow: hidden;
+
     width: $pager-size;
     height: $pager-size;
     //margin-right: 1.3rem;
 
     text-align: center;
+
     color: $pager-font-color;
     border-radius: $pager-border-radius;
     background-color: $pager-background-color;
@@ -164,22 +170,25 @@ $pager-arrow-background-hover: #2f9b86;
   & li a:link,
   & li a:visited {
     @include text-decoration;
+
     border: $pager-border-size solid $pager-border-color;
   }
 
   & li a:hover {
     // font-weight: 700;
     color: $pager-font-color-hover;
-    background-color: $pager-background-color-hover;
     border: $pager-border-size solid $pager-background-color-hover;
+    background-color: $pager-background-color-hover;
   }
 
   & li.active a {
     font-weight: 400;
+
     cursor: default;
+
     color: $pager-font-color-cur;
-    background-color: $pager-background-color-cur;
     border: $pager-border-size solid $pager-background-color-cur;
+    background-color: $pager-background-color-cur;
   }
 
   li.prev,
@@ -189,6 +198,7 @@ $pager-arrow-background-hover: #2f9b86;
     & a,
     & span {
       margin: 0;
+
       text-transform: uppercase;
 
       //border-radius: 0;
@@ -197,22 +207,24 @@ $pager-arrow-background-hover: #2f9b86;
       }
 
       @media (min-width: $sm) {
-        padding: 0 20px;
         width: auto;
+        padding: 0 20px;
       }
     }
 
     &.disabled a,
     &.disabled span {
-      color: $pager-font-color-disabled;
-      background-color: $pager-background-color-disabled;
-
       @include font($pager-font-size, $pager-font-weight, $pager-size);
+
+      color: $pager-font-color-disabled;
+      border: $pager-border-size solid $pager-border-color-disabled;
+      background-color: $pager-background-color-disabled;
     }
   }
 
   li.prev {
     position: relative;
+
     display: flex;
     // & a,
     // & span {
@@ -224,9 +236,12 @@ $pager-arrow-background-hover: #2f9b86;
       position: absolute;
       top: 0;
       left: -12px;
+
       width: 0;
       height: 0;
+
       content: "";
+
       border-width: 19px 12px 19px 0;
       border-style: solid;
       border-color: transparent $pager-background-color transparent transparent;
@@ -240,8 +255,8 @@ $pager-arrow-background-hover: #2f9b86;
     span:before {
       // font-size: $pager-font-size * 1.5;
       // position: absolute;
-
       right: 15px;
+
       content: "\003C";
 
       @media (min-width: $sm) {
@@ -252,6 +267,7 @@ $pager-arrow-background-hover: #2f9b86;
 
   li.next {
     position: relative;
+
     display: flex;
     // & a,
     // & span {
@@ -264,9 +280,12 @@ $pager-arrow-background-hover: #2f9b86;
       position: absolute;
       top: 0;
       right: -12px;
+
       width: 0;
       height: 0;
+
       content: "";
+
       border-width: 19px 0 19px 12px;
       border-style: solid;
       border-color: transparent transparent transparent $pager-background-color;
@@ -280,8 +299,8 @@ $pager-arrow-background-hover: #2f9b86;
     span:after {
       // font-size: $pager-font-size * 1.5;
       // position: absolute;
-
       right: 15px;
+
       content: "\003E";
 
       @media (min-width: $sm) {
