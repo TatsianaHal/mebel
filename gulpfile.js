@@ -233,6 +233,7 @@ gulp.task('watch', function() {
   //gulp.watch('./img/sprite.svg', ['svg2pug']);
   //gulp.watch('./source/svg/*.svg', ['svgo']);
   gulp.watch('./html/**/**/*.pug', ['html']);
+  gulp.watch('./html/components/**/*.pug', ['html']);
   //gulp.watch('./source/png/**/*.png', ['sprite']);
   gulp.watch('./scss/**/**/*.scss', ['sass']);
   //gulp.watch('./postcss/**/*.css', ['css']);
