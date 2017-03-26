@@ -127,17 +127,22 @@ $pager-arrow-background-hover: #2f9b86;
 // Пагинатор Yii 2
 .pagination {
   display: flex;
-  // padding: 0;
 
+  width: 100%;
+  // padding: 0;
   margin: auto auto $gutter;
 
   list-style: none;
 
+  align-self: flex-end;
+  flex-wrap: wrap;
   justify-content: center;
 
   li {
     height: $pager-size;
-
+    @media (max-width: $md - 1) {
+      margin-bottom: 5px;
+    }
     &:not(:last-of-type) {
       margin-right: 10px;
     }
@@ -197,14 +202,14 @@ $pager-arrow-background-hover: #2f9b86;
 
     & a,
     & span {
+      display: flex;
+
       margin: 0;
 
       text-transform: uppercase;
 
-      //border-radius: 0;
-      @media (max-width: $sm - 1) {
-        font-size: 0;
-      }
+      align-items: center;
+      justify-content: center;
 
       @media (min-width: $sm) {
         width: auto;
@@ -219,6 +224,18 @@ $pager-arrow-background-hover: #2f9b86;
       color: $pager-font-color-disabled;
       border: $pager-border-size solid $pager-border-color-disabled;
       background-color: $pager-background-color-disabled;
+    }
+    & a,
+    &.disabled a,
+    & span,
+    &.disabled span {
+      @media (max-width: $sm - 1) {
+        font-size: 0;
+      }
+      @media (min-width: $breakpoint) {
+        padding-right: 30px;
+        padding-left: 30px;
+      }
     }
   }
 

@@ -42,6 +42,10 @@ p {
   color: $black;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 a {
   @include font(inherit, inherit, inherit);
 
