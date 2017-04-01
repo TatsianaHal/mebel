@@ -77,12 +77,18 @@ form {
     border: 1px solid $border;
     border-radius: 2px;
     background: white;
-    &:focus {
-      border: 1px solid $border;
-    }
     @media (min-width: $breakpoint) {
       padding: 0 17px;
     }
+    &:focus {
+      border: 1px solid $border;
+    }
+  }
+  .form-group.has-success .form-control {
+    border: 1px solid green;
+  }
+  .form-group.has-warning .form-control {
+    border: 1px solid red;
   }
 }
 
@@ -404,6 +410,7 @@ form {
     }
     &:hover {
       cursor: pointer;
+
       color: $bsc;
     }
   }
