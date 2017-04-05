@@ -1,10 +1,10 @@
-.top-panel
++b.top-panel
   .container
     .row
-      a(href='/contacts.html').top-panel__geo
+      +e.geo(href='/contacts.html')
         +svg-icon('geo')
-      a(href='/contacts.html').top-panel__address ул. Московская, 73 а
-      a(href='tel:+78005552356').top-panel__phone 8 800 555 23 56
+      +e.address(href='/contacts.html') ул. Московская, 73 а
+      +e.phone(href='tel:+78005552356') 8 800 555 23 56
       a(href='#callback').callback.button.button--medium.button--black-filled.popup-link.js-popup
         +svg-icon('handset')
         | заказать звонок

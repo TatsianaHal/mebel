@@ -1,35 +1,35 @@
-header.header
++b.HEADER.header
   include ../components/_top-panel
   .container
     .row
-      .header__container
-        .header__column
+      +e.container
+        +e.column
           // кнопка мобильного меню
           .nav-button#nav-button-js
-        .header__column
+        +e.column
           a(href="/").logo
             span Мебель
             +svg-icon('logo')
             span Дома
-        .header__column
-          form(action="#", method="post").header-search#js-header-search
+        +e.column
+          +b.FORM.header-search(action="#", method="post")#js-header-search
             .form-group
               input#input-name.form-control(type='search', placeholder='Поиск')
-            button(type='submit').header-search__submit
+            +e.BUTTON.submit(type='submit')
               +svg-icon('search')
-      nav.nav
-        ul.nav__list#nav-list-js
+      +b.NAV.nav
+        +e.UL.list#nav-list-js
           // активное состояние <li class="nav__list-item active">
           each item, i in navMenu
             //- li.nav__list-item.active
-            li.nav__list-item(class={"has-sub" : item.submenu})
-              a(href=item.href).nav__link
+            +e.list-item(class={"has-sub" : item.submenu})
+              +e.link(href=item.href)
                 span= item.name
                 //- span.icon(class='icon-#{item.icon}')
                 if item.submenu
                   b.caret
               if item.submenu
-                ul.nav__sub-list.nav-sublist-js
+                +e.UL.sub-list.nav-sublist-js
                   each subitem in item.submenu
-                    li.nav__sub-list-item
-                      a(href=subitem.href).nav__sub-link= subitem.name
+                    +e.sub-list-item
+                      +e.sub-link(href=subitem.href)= subitem.name
