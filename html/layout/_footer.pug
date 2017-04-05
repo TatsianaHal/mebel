@@ -1,35 +1,35 @@
-footer.footer
++b.FOOTER.footer
   .container
     .row
-      .footer__column
+      +e.column
         a(href="#").logo
           span Мебель
           +svg-icon('logo')
           span Дома
-        .footer__title E-mail:
-        a(href="mailto:mebeldoma@yandex.ru", target="_blank").footer__mail mebeldoma@yandex.ru
-        .social
+        +e.title E-mail:
+        +e.mail(href="mailto:mebeldoma@yandex.ru", target="_blank") mebeldoma@yandex.ru
+        +b.social
           each item, i in glyph
-            a(href=item.href, target="_blank", class='social__link social__link-' + item.icon)
+            +e.link(href=item.href, target="_blank", class='social__link-' + item.icon)
               svg.svg-social(class='svg-social-' + item.icon)
                 //-use(xlink:href='svg.svg#' + item.icon + '-glyph', class=item.icon)
                 use(xlink:href='#' + item.icon + '-glyph', class=item.icon)
-      .footer__column
-        ul.footer-nav
+      +e.column
+        +b.UL.footer-nav
           li.footer__title Главная
           each item, i in navMenu
-            li.footer-nav__li
-              a(href=item.href).footer-nav__link= item.name
-      .footer__column
-        ul.footer-nav
+            +e.li
+              +e.link(href=item.href)= item.name
+      +e.column
+        +b.UL.footer-nav
           li.footer__title Каталог
           each item, i in navMenu[1].submenu
-            li.footer-nav__li
-              a(href=item.href).footer-nav__link= item.name
-      .footer__column
+            +e.li
+              +e.link(href=item.href)= item.name
+      +e.column
         div(itemscope itemtype="http://schema.org/Organization")
-            .footer__title Наш адрес:
-            .footer__address
+            +e.title Наш адрес:
+            +e.address
               span(itemprop='name')=companyName
               br
               span(itemprop="address" itemscope itemtype="http://schema.org/PostalAddress")
@@ -55,8 +55,8 @@ footer.footer
             use(xlink:href='#onlinebees-svg')
 // Модальное окно "Обратный звонок" в шапкеи подвале сайта
 #callback.mfp-hide.popup.popup-callback
-  form.form.form-callback
+  +b.FORM.form-callback.form
     +input-type-text('Фамилия Имя Отчество')
     +input-type-text('Телефон')
-    button(type='submit').form-callback__submit Заказать звонок
+    +e.BUTTON.submit(type='submit') Заказать звонок
 // Модальное окно "Заказать звонок" в шапке и подвале сайта
