@@ -59,6 +59,11 @@
 // @include font($font-size, $font-weight: 400, $line-height: 1.5, $font-style: normal, $font-family: $font); // Font берется из _vars.scss
 @mixin font($font-size, $font-weight: 400, $line-height: 1.5, $font-style: normal, $font-family: $font) {
   font: $font-weight $font-style #{$font-size} / #{$line-height} $font-family;
+  @if(type-of($font-size) == type-of($line-height)) {
+    font: $font-weight $font-style #{$font-size} / #{$line-height/$font-size} $font-family;
+  } @else {
+    font: $font-weight $font-style #{$font-size} / #{$line-height} $font-family;
+  }
 }
 
 //@include text-decoration;

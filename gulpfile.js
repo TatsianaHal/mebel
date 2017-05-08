@@ -1,48 +1,49 @@
-var gulp         = require('gulp');
-var sass         = require('gulp-sass');
-var spritesmith  = require('gulp.spritesmith');
-var plumber      = require('gulp-plumber');
-var sourcemaps   = require('gulp-sourcemaps');
-var rename       = require("gulp-rename");
-var browserSync  = require('browser-sync');
-var reload       = browserSync.reload;
+let gulp         = require('gulp'),
+    sass         = require('gulp-sass'),
+    spritesmith  = require('gulp.spritesmith'),
+    plumber      = require('gulp-plumber'),
+    sourcemaps   = require('gulp-sourcemaps'),
+    rename       = require("gulp-rename"),
+    browserSync  = require('browser-sync'),
+    reload       = browserSync.reload;
 browserSync      = require('browser-sync').create();
-var pug          = require('gulp-pug');
-var csso         = require('gulp-csso');
-var livereload   = require('gulp-livereload');
-var concat       = require('gulp-concat');
-var babel        = require('gulp-babel');
-var svgo         = require('gulp-svgo');
-var svgSprite    = require('gulp-svg-sprite');
-var cheerio      = require('gulp-cheerio');
-var replace      = require('gulp-replace');
-var html2jade    = require('gulp-html2jade');
-var deleteLines  = require('gulp-delete-lines');
-var postcss      = require("gulp-postcss");
-var autoprefixer = require('autoprefixer');
-var mqpacker     = require('css-mqpacker');
-var pxtorem      = require('postcss-pxtorem');
-var uglify       = require("gulp-uglify");
-var path         = require('path');
-var runSequence  = require('run-sequence');
+let pug          = require('gulp-pug'),
+    csso         = require('gulp-csso'),
+    livereload   = require('gulp-livereload'),
+    concat       = require('gulp-concat'),
+    babel        = require('gulp-babel'),
+    svgo         = require('gulp-svgo'),
+    svgSprite    = require('gulp-svg-sprite'),
+    cheerio      = require('gulp-cheerio'),
+    replace      = require('gulp-replace'),
+    html2jade    = require('gulp-html2jade'),
+    deleteLines  = require('gulp-delete-lines'),
+    postcss      = require("gulp-postcss"),
+    autoprefixer = require('autoprefixer'),
+    mqpacker     = require('css-mqpacker'),
+    pxtorem      = require('postcss-pxtorem'),
+    uglify       = require("gulp-uglify"),
+    path         = require('path'),
+    runSequence  = require('run-sequence');
 
-// var gcmq         = require('gulp-group-css-media-queries');
-// var cache        = require('gulp-cached');
-// var autoprefixer = require('gulp-autoprefixer');
-// var shorthand    = require('gulp-shorthand');
-// var cssnano      = require('gulp-cssnano');
-// var pxtorem      = require('gulp-pxtorem');
-// var prettify = require('gulp-html-prettify');
-// var htmlbeautify = require('gulp-html-beautify');
-// var svgmin    = require('gulp-svgmin');
-//var clean     = require('gulp-clean');
-// var deletefile = require('gulp-delete-file');
-//var html2pug  = require('gulp-html2pug');
-//var customProperties = require("postcss-custom-properties");
-//var cssvariables = require('postcss-css-variables');
+// let gcmq         = require('gulp-group-css-media-queries');
+// let cache        = require('gulp-cached');
+// let autoprefixer = require('gulp-autoprefixer');
+// let shorthand    = require('gulp-shorthand');
+// let cssnano      = require('gulp-cssnano');
+// let pxtorem      = require('gulp-pxtorem');
+// let prettify = require('gulp-html-prettify');
+// let htmlbeautify = require('gulp-html-beautify');
+// let svgmin    = require('gulp-svgmin');
+//let clean     = require('gulp-clean');
+// let deletefile = require('gulp-delete-file');
+//let html2pug  = require('gulp-html2pug');
+//let customProperties = require("postcss-custom-properties");
+//let cssvariables = require('postcss-css-variables');
 
-var paths = {
+let paths = {
   js    : './app/js/',
+  libs  : './app/vendor/',
   images: './app/img/',
   fonts : './app/fonts/',
   sass  : './app/scss/',
@@ -52,18 +53,27 @@ var paths = {
   }
 };
 
-var sources = {
+let sources = {
   jsSrc      : function() {
-    var scripts = [paths.js + 'main.js'];
+    let scripts = [
+        paths.js + 'header.js',
+        paths.js + 'nav-menu.js',
+        paths.js + 'swiper.js',
+        paths.js + 'magnific-popup.js',
+        paths.js + 'gallery.js',
+        paths.js + 'catalog.js',
+        paths.js + 'browser-updater.js'
+    ];
     return gulp.src(scripts)
   },
   libsJsSrc  : function() {
-    return gulp.src([
-      '/vendor/jquery/dist/jquery.min.js',
-      '/vendor/swiper/dist/js/swiper.min.js',
-      '/vendor/imagelightbox/dist/imagelightbox.min.js',
-      '/vendor/magnific-popup/dist/jquery.magnific-popup.min.js'
-    ])
+    let libs = [
+      paths.libs + 'jquery/dist/jquery.min.js',
+      paths.libs + 'swiper/dist/js/swiper.min.js',
+      paths.libs + 'imagelightbox/dist/imagelightbox.min.js',
+      paths.libs + 'magnific-popup/dist/jquery.magnific-popup.min.js'
+    ];
+    return gulp.src(libs)
   },
   imgSrc     : function() {
     return gulp.src([
@@ -88,9 +98,9 @@ var sources = {
   },
   libsSassSrc: function() {
     return gulp.src([
-      '/vendor/swiper/dist/css/swiper.min.css',
-      '/vendor/imagelightbox/dist/imagelightbox.min.css',
-      '/vendor/magnific-popup/dist/magnific-popup.css'
+      paths.libs + 'swiper/dist/css/swiper.min.css',
+      paths.libs + 'imagelightbox/dist/imagelightbox.min.css',
+      paths.libs + 'magnific-popup/dist/magnific-popup.css'
     ])
   },
   pugSrc     : function() {
@@ -112,9 +122,7 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('js', function() {
-
   sources.jsSrc()
-         //.pipe(concat('main.js'))
          .pipe(plumber())
          .pipe(sourcemaps.init())
          .pipe(babel({presets: ['es2015', 'es2016']}))
@@ -123,7 +131,8 @@ gulp.task('js', function() {
          .pipe(sourcemaps.write('.'))
          .pipe(plumber.stop())
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'js'));
+         .pipe(gulp.dest(paths.dest.root + 'js'))
+         .pipe(reload({stream: true}));
 });
 
 /*gulp.task('js', function() {
@@ -143,11 +152,12 @@ gulp.task('libsJs', function() {
          .pipe(concat('libs.js'))
          //.pipe(uglify())
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'js'));
+         .pipe(gulp.dest(paths.dest.root + 'js/'))
+         .pipe(reload({stream: true}));
 });
 
 gulp.task('sass', function() {
-  var plugins = [
+  let plugins = [
     //atImport,
     //mixins,
     //customProperties,
@@ -182,7 +192,8 @@ gulp.task('sass', function() {
          //.pipe(autoprefixer())
          .pipe(plumber.stop())
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'css'));
+         .pipe(gulp.dest(paths.dest.root + 'css'))
+         .pipe(reload({stream: true}));
 });
 
 //.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -208,14 +219,15 @@ gulp.task('libsSass', function() {
          .pipe(sass())
          //.pipe(autoprefixer())
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'css'));
+         .pipe(gulp.dest(paths.dest.root + 'css'))
+         .pipe(reload({stream: true}));
 });
 
 gulp.task('pug', function() {
 
-  //var locals = {};
+  //let locals = {};
 
-  var locals = {
+  let locals = {
     pretty        : true,
     "indent_size" : 2,
     "indent_char" : " ",
@@ -229,7 +241,8 @@ gulp.task('pug', function() {
          .pipe(pug({locals: locals}))
          //.on('error', console.log)
          .pipe(plumber.stop())
-         .pipe(gulp.dest(paths.dest.root));
+         .pipe(gulp.dest(paths.dest.root))
+         .pipe(reload({stream: true}));
 });
 
 //gulp.task('html', function buildHTML() {
@@ -245,7 +258,7 @@ gulp.task('pug', function() {
 //             //}))
 //             //.pipe(cheerio({
 //             //  run          : function($) {
-//             //    var a = $('a');
+//             //    let a = $('a');
 //             //    for (i in a) {
 //             //      a[i] = '\n' + toString(a[i]);
 //             //    }
@@ -260,13 +273,15 @@ gulp.task('pug', function() {
 gulp.task('images', function() {
   sources.imgSrc()
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'images'));
+         .pipe(gulp.dest(paths.dest.root + 'images'))
+         .pipe(reload({stream: true}));
 });
 
 gulp.task('fonts', function() {
   sources.fontsSrc()
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'fonts'));
+         .pipe(gulp.dest(paths.dest.root + 'fonts'))
+         .pipe(reload({stream: true}));
 });
 
 gulp.task('server', function() {
@@ -284,18 +299,18 @@ gulp.task('server', function() {
 });
 
 gulp.task('compile', ['pug', 'sass', 'js', 'images', 'fonts', 'libsJs', 'libsSass']);
-//gulp.task('compile', ['pug', 'sass', 'js', 'images', 'fonts']);
 
 gulp.task('default', function() {
   runSequence('watch', 'server');
 });
 
 gulp.task('watch', ['compile'], function() {
-  gulp.watch([paths.images + '**/*.*'], ['img'], reload({stream: true}));
-  gulp.watch([paths.fonts + '**/*.*'], ['fonts'], reload({stream: true}));
-  gulp.watch([paths.pug + '**/*.pug'], ['pug'], reload({stream: true}));
-  gulp.watch([paths.sass + '**/*.scss'], ['sass'], reload({stream: true}));
-  gulp.watch([paths.js + '**/*.js'], ['js'], reload({stream: true}));
+  gulp.watch([paths.images + '**/*.*'], ['img']);
+  gulp.watch([paths.fonts + '**/*.*'], ['fonts']);
+  gulp.watch([paths.pug + '**/*.pug'], ['pug']);
+  gulp.watch([paths.sass + '**/*.scss'], ['sass']);
+  gulp.watch([paths.js + '**/*.js'], ['js']);
+  //gulp.watch([paths.js + '**/*.js'], ['js'], reload({stream: true}));
 });
 
 // Таск делает из svg-спрайта файл jade/pug
@@ -363,7 +378,7 @@ gulp.task('watch', ['compile'], function() {
 //});
 
 //gulp.task('sprite', function() {
-//  var spriteData = gulp.src('./source/png/*.png')
+//  let spriteData = gulp.src('./source/png/*.png')
 //                       .pipe(spritesmith({
 //                         imgName  : 'sprite.png',
 //                         cssName  : '_sprite.scss',

@@ -11,13 +11,13 @@
 // библиотека миксинов, для работы с медиа-запросами https://github.com/at-import/breakpoint
 // почитать на русском здесь    http://zencoder.ru/susy/brief-tutorial-susy-part2/
 // @import "../vendor/breakpoint-2.x.x/stylesheets/breakpoint";
-@import "helpers/vars";           // переменные проекта
-@import "helpers/mixins";         // миксины проекта
-@import "base/fonts";             // шрифты
+@import "helpers/vars";           // Переменные проекта
+@import "helpers/mixins";         // Миксины проекта
+@import "base/fonts";             // Шрифты
 @import "base/grid";              // Компоненты сетки
-@import "base/reset";             // сброс и определение глобальных стилей
-@import "base/typography";        // типографика проекта
-@import "icons";                  // всё, что касается спрайта/иконок, SGV
+@import "base/reset";             // Сброс и определение глобальных стилей
+@import "base/typography";        // Типографика проекта
+@import "icons";                  // Всё, что касается спрайта/иконок, SGV
 // Компоненты сайта
 @import "components/breadcrumb";  // Хлебные крошки
 @import "components/buttons";     // Кнопки
