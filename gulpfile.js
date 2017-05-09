@@ -68,6 +68,7 @@ let sources = {
       paths.js + 'magnific-popup.js',
       paths.js + 'gallery.js',
       paths.js + 'catalog.js',
+      paths.js + 'svg-cache.js',
       paths.js + 'browser-updater.js'
     ];
     return gulp.src(scripts)
