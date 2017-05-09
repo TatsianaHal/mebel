@@ -2,7 +2,7 @@
 ;( function(window, document) {
   'use strict';
   // при обновлении svg-спрайта, нужно обновить номер ревизии
-  var file     = '/img/svg.html',
+  var file     = '/img/sprite.svg',
       revision = 0.1;
 
   if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {
