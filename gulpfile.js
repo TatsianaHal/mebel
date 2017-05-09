@@ -4,6 +4,7 @@ let gulp         = require('gulp'),
     plumber      = require('gulp-plumber'),
     sourcemaps   = require('gulp-sourcemaps'),
     rename       = require("gulp-rename"),
+    rimraf       = require('rimraf'),
     browserSync  = require('browser-sync'),
     reload       = browserSync.reload;
 browserSync      = require('browser-sync').create();
@@ -13,9 +14,6 @@ let pug          = require('gulp-pug'),
     concat       = require('gulp-concat'),
     babel        = require('gulp-babel'),
     svgo         = require('gulp-svgo'),
-    svgSprite    = require('gulp-svg-sprite'),
-    cheerio      = require('gulp-cheerio'),
-    replace      = require('gulp-replace'),
     html2jade    = require('gulp-html2jade'),
     deleteLines  = require('gulp-delete-lines'),
     postcss      = require("gulp-postcss"),
@@ -25,6 +23,13 @@ let pug          = require('gulp-pug'),
     uglify       = require("gulp-uglify"),
     path         = require('path'),
     runSequence  = require('run-sequence');
+
+//  ######### svg sprite #########
+let svgSprite = require('gulp-svg-sprite'),
+    svgmin    = require('gulp-svgmin'),
+    cheerio   = require('gulp-cheerio'),
+    replace   = require('gulp-replace');
+//  ######### !svg sprite #########
 
 // let gcmq         = require('gulp-group-css-media-queries');
 // let cache        = require('gulp-cached');
@@ -45,6 +50,7 @@ let paths = {
   js    : './app/js/',
   libs  : './app/vendor/',
   images: './app/img/',
+  svg   : './app/svg/',
   fonts : './app/fonts/',
   sass  : './app/scss/',
   pug   : './app/html/',
@@ -56,13 +62,13 @@ let paths = {
 let sources = {
   jsSrc      : function() {
     let scripts = [
-        paths.js + 'header.js',
-        paths.js + 'nav-menu.js',
-        paths.js + 'swiper.js',
-        paths.js + 'magnific-popup.js',
-        paths.js + 'gallery.js',
-        paths.js + 'catalog.js',
-        paths.js + 'browser-updater.js'
+      paths.js + 'header.js',
+      paths.js + 'nav-menu.js',
+      paths.js + 'swiper.js',
+      paths.js + 'magnific-popup.js',
+      paths.js + 'gallery.js',
+      paths.js + 'catalog.js',
+      paths.js + 'browser-updater.js'
     ];
     return gulp.src(scripts)
   },
@@ -105,7 +111,7 @@ let sources = {
   },
   pugSrc     : function() {
     return gulp.src([
-      paths.pug + '*.pug'
+      paths.pug + '*.pug', '!' + paths.pug + '_*.pug'
     ])
   }
 };
@@ -119,6 +125,12 @@ gulp.task('browserSync', function() {
     open  : true,
     notify: false
   });
+});
+
+//clean build folder
+gulp.task('cleanBuildDir', function(cb) {
+  //rimraf('public/', cb);
+  rimraf(paths.dest.root, cb);
 });
 
 gulp.task('js', function() {
@@ -136,16 +148,16 @@ gulp.task('js', function() {
 });
 
 /*gulp.task('js', function() {
-  gulp.src('./js-src/!*.js')
-      .pipe(plumber())
-      .pipe(sourcemaps.init())
-      .pipe(babel({presets: ['es2015', 'es2016']}))
-      .pipe(concat('scripts.js', {newLine: '\n\r'}))
-      .pipe(sourcemaps.write('.'))
-      .pipe(plumber.stop())
-      .pipe(gulp.dest('./js'))
-      .pipe(reload({stream: true}));
-});*/
+ gulp.src('./js-src/!*.js')
+ .pipe(plumber())
+ .pipe(sourcemaps.init())
+ .pipe(babel({presets: ['es2015', 'es2016']}))
+ .pipe(concat('scripts.js', {newLine: '\n\r'}))
+ .pipe(sourcemaps.write('.'))
+ .pipe(plumber.stop())
+ .pipe(gulp.dest('./js'))
+ .pipe(reload({stream: true}));
+ });*/
 
 gulp.task('libsJs', function() {
   sources.libsJsSrc()
@@ -270,10 +282,10 @@ gulp.task('pug', function() {
 //             .pipe(reload({stream: true}));
 //});
 
-gulp.task('images', function() {
+gulp.task('img', function() {
   sources.imgSrc()
          //.on('error', console.log)
-         .pipe(gulp.dest(paths.dest.root + 'images'))
+         .pipe(gulp.dest(paths.dest.root + 'img'))
          .pipe(reload({stream: true}));
 });
 
@@ -298,7 +310,49 @@ gulp.task('server', function() {
   });
 });
 
-gulp.task('compile', ['pug', 'sass', 'js', 'images', 'fonts', 'libsJs', 'libsSass']);
+//  ######### svg sprite #########
+gulp.task('svg', function() {
+  return gulp.src(paths.svg + '*.svg')
+             .pipe(plumber())
+             // minify svg
+             .pipe(svgmin({
+               js2svg: {
+                 pretty: true
+               }
+             }))
+             // remove all fill and style declarations in out shapes
+             .pipe(cheerio({
+               run          : function($) {
+                 $('[fill]').removeAttr('fill');
+                 $('[stroke]').removeAttr('stroke');
+                 $('[style]').removeAttr('style');
+               },
+               parserOptions: {xmlMode: true}
+             }))
+             // cheerio plugin create unnecessary string '&gt;', so replace it.
+             .pipe(replace('&gt;', '>'))
+             // build svg sprite
+             .pipe(svgSprite({
+               mode: {
+                 symbol: {
+                   sprite : '../sprite.svg',
+                   render : {
+                     scss: {
+                       dest    : '../../scss/_svg-sprite.scss',
+                       template: paths.sass + 'templates/_sprite_template.scss'
+                     }
+                   },
+                   example: true
+                 }
+               }
+             }))
+             .pipe(plumber.stop())
+             .pipe(gulp.dest(paths.images))
+             .pipe(reload({stream: true}));
+});
+//  ######### !svg sprite #########
+
+gulp.task('compile', ['pug', 'sass', 'js', 'img', 'svg', 'fonts', 'libsJs', 'libsSass']);
 
 gulp.task('default', function() {
   runSequence('watch', 'server');
@@ -306,6 +360,7 @@ gulp.task('default', function() {
 
 gulp.task('watch', ['compile'], function() {
   gulp.watch([paths.images + '**/*.*'], ['img']);
+  gulp.watch([paths.svg + '**/*.*'], ['svg']);
   gulp.watch([paths.fonts + '**/*.*'], ['fonts']);
   gulp.watch([paths.pug + '**/*.pug'], ['pug']);
   gulp.watch([paths.sass + '**/*.scss'], ['sass']);
@@ -338,43 +393,6 @@ gulp.task('watch', ['compile'], function() {
 //        extname: ".pug"
 //      }))
 //      .pipe(gulp.dest('./html/svg'));
-//});
-
-//gulp.task('svgo', function() {
-//  gulp.src('./source/svg/**/*.svg')
-//      .pipe(plumber())
-//      // делаем спрайт
-//      .pipe(svgo())
-//      // удаляем все атрибуты fill, style, stroke и теги стилей
-//      .pipe(cheerio({
-//        run          : function($) {
-//          $('[fill]').removeAttr('fill');
-//          $('[stroke]').removeAttr('stroke');
-//          $('[class]').removeAttr('class');
-//          $('[style]').removeAttr('style');
-//          $('style').remove('style');
-//        },
-//        parserOptions: {xmlMode: true}
-//      }))
-//      // cheerio plugin create unnecessary string '&gt;', so replace it.
-//      .pipe(replace('&gt;', '>'))
-//      // build svg sprite
-//      .pipe(svgSprite({
-//        mode: {
-//          symbol: {
-//            sprite: '../img/sprite.svg',
-//            render: {
-//              scss: {
-//                dest    : '../scss/_svg-sprite.scss',
-//                template: './scss/templates/_sprite_template.scss'
-//              }
-//            }
-//          }
-//        }
-//      }))
-//      .pipe(plumber.stop())
-//      .pipe(gulp.dest('.'))
-//      .pipe(reload({stream: true}));
 //});
 
 //gulp.task('sprite', function() {

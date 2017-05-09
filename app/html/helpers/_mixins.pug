@@ -1,10 +1,16 @@
 //- Миксины проекта
 
-//- svg-иконка
+//- svg-иконка из Dom
 mixin svg-icon(name)
   svg(class ='svg-icon svg-icon-' + name)
     title=name
     use(xlink:href='#' + name)
+
+// svg иконки из внешнего спрайта
+mixin svg-icon-2(name,mod)
+  - mod = mod || ''
+  svg(class="icon icon-" + name + ' ' + mod)
+    use(xlink:href="/img/sprite.svg#" + name)
 
 //- инпут текст
 mixin input-type-text(placeholder)
