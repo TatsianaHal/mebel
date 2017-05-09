@@ -1,7 +1,7 @@
 ﻿.idea/
-css/
-js/
-node_modules/
-source/PSD/
+/node_modules/
+/src/PSD/
 /vendor/
+/npm-debug.log
+/public/
 *.html

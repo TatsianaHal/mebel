@@ -1,0 +1,42 @@
+// нормализация стилей страницы   https://github.com/necolas/normalize.css
+@import "base/normalize";
+// бутстрап
+//@import "../vendor/bootstrap-sass-3.3.6/stylesheets/_bootstrap.scss";
+// библиотека миксинов, для создания гибкой системы сеток https://github.com/oddbird/susy/
+// почитать на русском здесь    http://zencoder.ru/susy/brief-tutorial-susy-2/
+//                   и здесь    http://zencoder.ru/css/static-grids-susy/
+// s@import "../vendor/susy/sass/susy";
+// инициализация susy http://susydocs.oddbird.net/en/latest/settings/
+// @import "vendor/susy-settings";
+// библиотека миксинов, для работы с медиа-запросами https://github.com/at-import/breakpoint
+// почитать на русском здесь    http://zencoder.ru/susy/brief-tutorial-susy-part2/
+// @import "../vendor/breakpoint-2.x.x/stylesheets/breakpoint";
+@import "helpers/vars";           // Переменные проекта
+@import "helpers/mixins";         // Миксины проекта
+@import "base/fonts";             // Шрифты
+@import "base/grid";              // Компоненты сетки
+@import "base/reset";             // Сброс и определение глобальных стилей
+@import "base/typography";        // Типографика проекта
+@import "icons";                  // Всё, что касается спрайта/иконок, SGV
+// Компоненты сайта
+@import "components/breadcrumb";  // Хлебные крошки
+@import "components/buttons";     // Кнопки
+@import "components/pagination";  // Пагинация
+@import "components/form";        // Формы
+@import "layout/header";          // Шапка
+@import "layout/footer";          // Подвал
+@import "common";                 // общие стили для страниц
+// Стили страниц
+@import "pages/main";             // Главная страница
+// @import "pages/about";             // О нас
+@import "pages/catalog";          // Каталог продукции
+@import "pages/product";          // Карточка товара
+@import "pages/news";             // Страница новостей, 1 новости, вывод на главной
+@import "components/gallery";     // Фотогалерея, вывод галереи на главной (если есть)
+@import "pages/articles";         // Статьи и 1 статья
+@import "pages/contacts";         // Контакты
+//@import "pages/cart";                 // Корзина
+@import "user-content";           // Файл стилей пользователей (добавление через админку)
+// Стили подключенных библиотек
+@import "vendor/swiper";          // настройка слайдера swiper http://idangero.us/swiper/get-started/
+@import "vendor/magnific-popup";  // Всплывающие окна https://github.com/dimsemenov/Magnific-Popupswiper/get-started/
