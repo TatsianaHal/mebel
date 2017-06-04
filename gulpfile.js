@@ -145,7 +145,8 @@ gulp.task('js', function() {
          .pipe(plumber.stop())
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'js'))
-         .pipe(reload({stream: true}));
+         //.pipe(reload({stream: true}));
+        ;
 });
 
 /*gulp.task('js', function() {
@@ -162,11 +163,12 @@ gulp.task('js', function() {
 
 gulp.task('libsJs', function() {
   sources.libsJsSrc()
+         .pipe(plumber())
          .pipe(concat('libs.js'))
-         //.pipe(uglify())
-         //.on('error', console.log)
+         .pipe(plumber.stop())
          .pipe(gulp.dest(paths.dest.root + 'js/'))
-         .pipe(reload({stream: true}));
+         //.pipe(reload({stream: true}));
+          ;
 });
 
 gulp.task('sass', function() {
@@ -206,34 +208,20 @@ gulp.task('sass', function() {
          .pipe(plumber.stop())
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'css'))
-         .pipe(reload({stream: true}));
+         //.pipe(reload({stream: true}));
+          ;
 });
-
-//.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-//gulp.task('sass', function() {
-//
-//  return gulp.src('./scss/**/*.scss')
-//             .pipe(plumber())
-//             .pipe(sourcemaps.init())
-//             .pipe(sass().on('error', sass.logError))
-//             .pipe(postcss(plugins))
-//             .pipe(rename({suffix: ".min"}))
-//             .pipe(csso())
-//             .pipe(sourcemaps.write('.'))
-//             .pipe(plumber.stop())
-//             .pipe(gulp.dest('./css'))
-//             .pipe(reload({stream: true}));
-//});
 
 gulp.task('libsSass', function() {
 
   sources.libsSassSrc()
+         .pipe(plumber())
          .pipe(concat('libs.css'))
-         .pipe(sass())
-         //.pipe(autoprefixer())
-         //.on('error', console.log)
+         .pipe(csso())
+         .pipe(plumber.stop())
          .pipe(gulp.dest(paths.dest.root + 'css'))
-         .pipe(reload({stream: true}));
+         //.pipe(reload({stream: true}));
+        ;
 });
 
 gulp.task('pug', function() {
@@ -255,7 +243,8 @@ gulp.task('pug', function() {
          //.on('error', console.log)
          .pipe(plumber.stop())
          .pipe(gulp.dest(paths.dest.root))
-         .pipe(reload({stream: true}));
+         //.pipe(reload({stream: true}));
+        ;
 });
 
 //gulp.task('html', function buildHTML() {
@@ -287,28 +276,16 @@ gulp.task('img', function() {
   sources.imgSrc()
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'img'))
-         .pipe(reload({stream: true}));
+         //.pipe(reload({stream: true}));
+        ;
 });
 
 gulp.task('fonts', function() {
   sources.fontsSrc()
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'fonts'))
-         .pipe(reload({stream: true}));
-});
-
-gulp.task('server', function() {
-  browserSync.init({
-    server: {
-      baseDir: paths.dest.root
-    },
-    files : [
-      paths.app + '**/*.*',
-      paths.dest.root + '**/*.*'
-    ],
-    port  : 8000,
-    ui    : {port: 8001}
-  });
+         //.pipe(reload({stream: true}));
+          ;
 });
 
 //  ######### svg sprite #########
@@ -349,17 +326,19 @@ gulp.task('svg', function() {
              }))
              .pipe(plumber.stop())
              .pipe(gulp.dest(paths.images))
-             .pipe(reload({stream: true}));
+             //.pipe(reload({stream: true}));
+              ;
 });
 //  ######### !svg sprite #########
 
 gulp.task('compile', ['pug', 'sass', 'js', 'img', 'svg', 'fonts', 'libsJs', 'libsSass']);
 
 gulp.task('default', function() {
-  runSequence('watch', 'server');
+  runSequence('compile', 'server', 'watch');
 });
 
-gulp.task('watch', ['compile'], function() {
+gulp.task('watch', function() {
+
   gulp.watch([paths.images + '**/*.*'], ['img']);
   gulp.watch([paths.svg + '**/*.*'], ['svg']);
   gulp.watch([paths.fonts + '**/*.*'], ['fonts']);
@@ -368,6 +347,41 @@ gulp.task('watch', ['compile'], function() {
   gulp.watch([paths.js + '**/*.js'], ['js']);
   //gulp.watch([paths.js + '**/*.js'], ['js'], reload({stream: true}));
 });
+
+gulp.task('server', function() {
+  browserSync.init({
+    server: {
+      baseDir: paths.dest.root
+    },
+    files : [
+      paths.app + '**/*.*',
+      paths.dest.root + '**/*.*'
+    ],
+    port  : 8000,
+    ui    : {port: 8001}
+  });
+});
+
+
+//gulp.task('watch', function() {
+//  livereload.listen({
+//    port: 3009
+//  });
+//
+//  //gulp.watch('./img/sprite.svg', ['svg2pug']);
+//  //gulp.watch('./source/svg/*.svg', ['svgo']);
+//  gulp.watch('./html/**/**/*.pug', ['html']);
+//  gulp.watch('./html/components/**/*.pug', ['html']);
+//  //gulp.watch('./source/png/**/*.png', ['sprite']);
+//  gulp.watch('./scss/**/**/*.scss', ['sass']);
+//  //gulp.watch('./postcss/**/*.css', ['css']);
+//  gulp.watch('./js-src/**/**/*.js', ['js']);
+//  //gulp.watch('./js-coffee/**/*.coffee', ['coffee']);
+//});
+//
+//gulp.task('default', ['html', 'sprite', 'sass', 'js', 'browserSync', 'watch']);
+
+
 
 // Таск делает из svg-спрайта файл jade/pug
 //gulp.task('h2j', function() {
@@ -409,21 +423,5 @@ gulp.task('watch', ['compile'], function() {
 //  spriteData.css.pipe(gulp.dest('./scss'));
 //});
 
-//gulp.task('watch', function() {
-//  livereload.listen({
-//    port: 3009
-//  });
-//
-//  //gulp.watch('./img/sprite.svg', ['svg2pug']);
-//  //gulp.watch('./source/svg/*.svg', ['svgo']);
-//  gulp.watch('./html/**/**/*.pug', ['html']);
-//  gulp.watch('./html/components/**/*.pug', ['html']);
-//  //gulp.watch('./source/png/**/*.png', ['sprite']);
-//  gulp.watch('./scss/**/**/*.scss', ['sass']);
-//  //gulp.watch('./postcss/**/*.css', ['css']);
-//  gulp.watch('./js-src/**/**/*.js', ['js']);
-//  //gulp.watch('./js-coffee/**/*.coffee', ['coffee']);
-//});
-//
-//gulp.task('default', ['html', 'sprite', 'sass', 'js', 'browserSync', 'watch']);
+
 
