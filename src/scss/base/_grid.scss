@@ -13,6 +13,7 @@
 // аналог row у bootstrap, но с учетом flex-wrap: wrap
 .row {
   @include flex-wrap;
+  width: 100%;
 }
 
 //@include column-in-row; // см. _grid
