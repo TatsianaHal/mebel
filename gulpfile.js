@@ -20,7 +20,7 @@ let pug          = require('gulp-pug'),
     autoprefixer = require('autoprefixer'),
     mqpacker     = require('css-mqpacker'),
     pxtorem      = require('postcss-pxtorem'),
-    uglify       = require("gulp-uglify"),
+    uglify       = require('gulp-uglify'),
     path         = require('path'),
     runSequence  = require('run-sequence');
 
@@ -47,15 +47,15 @@ let svgSprite = require('gulp-svg-sprite'),
 //let cssvariables = require('postcss-css-variables');
 
 let paths = {
-  js    : './app/js/',
-  libs  : './app/vendor/',
-  images: './app/img/',
-  svg   : './app/svg/',
-  fonts : './app/fonts/',
-  sass  : './app/scss/',
-  pug   : './app/html/',
+  js    : './src/js/',
+  libs  : './src/vendor/',
+  images: './src/img/',
+  svg   : './src/svg/',
+  fonts : './src/fonts/',
+  sass  : './src/scss/',
+  pug   : './src/html/',
   dest  : {
-    root: './public/'
+    root: './build/'
   }
 };
 
@@ -130,7 +130,7 @@ gulp.task('browserSync', function() {
 
 //clean build folder
 gulp.task('cleanBuildDir', function(cb) {
-  //rimraf('public/', cb);
+  //rimraf('build/', cb);
   rimraf(paths.dest.root, cb);
 });
 

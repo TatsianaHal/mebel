@@ -1,0 +1,153 @@
+// /src/scss/_common.scss
+// Общие стили для всех страниц
+
+//.main {
+//  padding-bottom: 90px;
+//}
+
+.container {
+  // @include min-width;
+  width: 100%;
+  max-width: $site-width;
+
+  padding-right: $gutter;
+  padding-left: $gutter;
+
+
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.subcontainer {
+  width: 100%;
+  //padding-right: 25px;
+  //padding-left: 25px;
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+// Логотипы хит продаж, новинка, акция/распродажа
+.label {
+  position: relative;
+  &:after {
+    @include font(14px, 700, 38px);
+
+    position: absolute;
+    top: 20px;
+    right: 0;
+
+    height: 38px;
+    padding: 0 15px;
+
+    text-transform: uppercase;
+
+    color: white;
+    border: none;
+  }
+}
+@each $class, $text, $bgc in  (hit, "Хит продаж", #ea4e00),
+                              (new, "Новинка", #8bb21e),
+                              (action, "Акция", #e52c49),
+                              (discount, "Скидка", #e4af00),
+                              (sale, "Распродажа", #e56c00),
+                              (news, "Новость", #8bb21e) {
+  .label-#{$class} {
+    &:after {
+      content: $text;
+
+      background-color: $bgc;
+    }
+  }
+}
+
+.date {
+  @include font(14px, 300, 22px);
+
+  color: #b0b0b0;
+}
+
+.social {
+  // justify-content: space-between;
+  $social-size: 40px;
+  $social-border-width: 0;
+  $social-border-style: solid; // solid, dotted, dashed
+  $social-border-color: green;
+  $social-border-radius: 50%;
+  $social-bg-color: lightgray;
+  $social-bg-color-hover: dodgerblue;
+  $social-glyph-color: white;
+  $social-glyph-color-hover: white;
+
+  display: none;
+
+  margin: 15px 0;
+  @media (min-width: $sm) {
+    display: flex;
+  }
+
+  &__link {
+    @include transition();
+
+    display: flex;
+
+    width: $social-size;
+    height: $social-size;
+
+    opacity: 0.85;
+    color: $social-glyph-color;
+    border: none;
+    border: $social-border-width $social-border-style currentcolor;
+    border-radius: $social-border-radius;
+
+    align-items: center;
+    justify-content: center;
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+    &:hover {
+      opacity: 1;
+    }
+    .svg-social {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+
+      transform: scale(0.618);
+      transform-origin: center;
+    }
+    .svg-social-vk {
+      transform: scale(0.70);
+    }
+    .svg-social-inst {
+      transform: scale(0.60);
+    }
+  }
+  @each $social, $color in  (fb, $fb),
+    (ok, $ok),
+    (tw, $tw),
+    (vk, $vk),
+    (inst, $inst),
+    (yout, $yout) {
+    &__link-#{$social} {
+      background-color: $color;
+    }
+    &__link-#{$social}:hover {
+      box-shadow: 0 0 3px 3px rgba($color, 0.3);
+    }
+  }
+}
+
+.rouble:after {
+  //@include font(inherit, inherit, inherit, normal, Rouble);
+  font-family: ALSRubl;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+
+  margin-left: 5px;
+
+  content: "₽";
+
+  color: inherit;
+}

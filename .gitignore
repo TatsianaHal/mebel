@@ -3,5 +3,5 @@
 /src/PSD/
 /vendor/
 /npm-debug.log
-/public/
+/build/
 *.html
