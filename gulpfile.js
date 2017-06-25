@@ -5,9 +5,9 @@ let gulp         = require('gulp'),
     sourcemaps   = require('gulp-sourcemaps'),
     rename       = require("gulp-rename"),
     rimraf       = require('rimraf'),
-    browserSync  = require('browser-sync'),
+    //browserSync  = require('browser-sync'),
+    browserSync  = require('browser-sync').create(),
     reload       = browserSync.reload;
-browserSync      = require('browser-sync').create();
 let pug          = require('gulp-pug'),
     csso         = require('gulp-csso'),
     livereload   = require('gulp-livereload'),
@@ -37,8 +37,8 @@ let svgSprite = require('gulp-svg-sprite'),
 // let shorthand    = require('gulp-shorthand');
 // let cssnano      = require('gulp-cssnano');
 // let pxtorem      = require('gulp-pxtorem');
-// let prettify = require('gulp-html-prettify');
-// let htmlbeautify = require('gulp-html-beautify');
+// let prettify = require('gulp-pug-prettify');
+// let htmlbeautify = require('gulp-pug-beautify');
 // let svgmin    = require('gulp-svgmin');
 //let clean     = require('gulp-clean');
 // let deletefile = require('gulp-delete-file');
@@ -53,7 +53,7 @@ let paths = {
   svg   : './src/svg/',
   fonts : './src/fonts/',
   sass  : './src/scss/',
-  pug   : './src/html/',
+  pug   : './src/pug/',
   dest  : {
     root: './build/'
   }
@@ -117,17 +117,6 @@ let sources = {
   }
 };
 
-gulp.task('browserSync', function() {
-  browserSync({
-    server: {
-      baseDir: "./"
-    },
-    port  : 3009,
-    open  : true,
-    notify: false
-  });
-});
-
 //clean build folder
 gulp.task('cleanBuildDir', function(cb) {
   //rimraf('build/', cb);
@@ -145,8 +134,8 @@ gulp.task('js', function() {
          .pipe(plumber.stop())
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'js'))
-         //.pipe(reload({stream: true}));
-        ;
+  //.pipe(reload({stream: true}));
+  ;
 });
 
 /*gulp.task('js', function() {
@@ -167,8 +156,8 @@ gulp.task('libsJs', function() {
          .pipe(concat('libs.js'))
          .pipe(plumber.stop())
          .pipe(gulp.dest(paths.dest.root + 'js/'))
-         //.pipe(reload({stream: true}));
-          ;
+  //.pipe(reload({stream: true}));
+  ;
 });
 
 gulp.task('sass', function() {
@@ -208,8 +197,8 @@ gulp.task('sass', function() {
          .pipe(plumber.stop())
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'css'))
-         //.pipe(reload({stream: true}));
-          ;
+  //.pipe(reload({stream: true}));
+  ;
 });
 
 gulp.task('libsSass', function() {
@@ -220,36 +209,42 @@ gulp.task('libsSass', function() {
          .pipe(csso())
          .pipe(plumber.stop())
          .pipe(gulp.dest(paths.dest.root + 'css'))
-         //.pipe(reload({stream: true}));
-        ;
+  //.pipe(reload({stream: true}));
+  ;
 });
 
 gulp.task('pug', function() {
+  //let locals = {
+  //  pretty        : true,
+  //  "indent_size" : 2,
+  //  "indent_char" : " ",
+  //  "eol"         : "\n",
+  //  "indent_level": 0,
+  //  "extra_liners": 'span'
+  //};
+  ////sources.pugSrc()
+  //return gulp.src('./src/pug/*.pug')
+  //           .pipe(plumber())
+  //           .pipe(pug({locals: locals}))
+  //           //.on('error', console.log)
+  //           .pipe(plumber.stop())
+  //           .pipe(gulp.dest(paths.dest.root))
+  //           //.pipe(reload({stream: true}))
+  //           //.pipe(reload({stream: true}))
+  //            ;
 
-  //let locals = {};
-
-  let locals = {
-    pretty        : true,
-    "indent_size" : 2,
-    "indent_char" : " ",
-    "eol"         : "\n",
-    "indent_level": 0,
-    "extra_liners": 'span'
-  };
-
-  sources.pugSrc()
-         .pipe(plumber())
-         .pipe(pug({locals: locals}))
-         //.on('error', console.log)
-         .pipe(plumber.stop())
-         .pipe(gulp.dest(paths.dest.root))
-         //.pipe(reload({stream: true}));
-        ;
+  return gulp.src('./src/pug/*.pug')
+             //.pipe(cache('linting'))
+             .pipe(plumber())
+             .pipe(pug({pretty: true}))
+             .pipe(plumber.stop())
+             .pipe(gulp.dest(paths.dest.root))
+             .pipe(reload({stream: true}));
 });
 
-//gulp.task('html', function buildHTML() {
+//gulp.task('pug', function buildHTML() {
 //
-//  return gulp.src('./html/*.pug')
+//  return gulp.src('./pug/*.pug')
 //             .pipe(plumber())
 //             .pipe(pug({pretty: true}))
 //             //.pipe(pug())
@@ -276,16 +271,16 @@ gulp.task('img', function() {
   sources.imgSrc()
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'img'))
-         //.pipe(reload({stream: true}));
-        ;
+  //.pipe(reload({stream: true}));
+  ;
 });
 
 gulp.task('fonts', function() {
   sources.fontsSrc()
          //.on('error', console.log)
          .pipe(gulp.dest(paths.dest.root + 'fonts'))
-         //.pipe(reload({stream: true}));
-          ;
+  //.pipe(reload({stream: true}));
+  ;
 });
 
 //  ######### svg sprite #########
@@ -326,42 +321,44 @@ gulp.task('svg', function() {
              }))
              .pipe(plumber.stop())
              .pipe(gulp.dest(paths.images))
-             //.pipe(reload({stream: true}));
-              ;
+      //.pipe(reload({stream: true}));
+      ;
 });
 //  ######### !svg sprite #########
 
-gulp.task('compile', ['pug', 'sass', 'js', 'img', 'svg', 'fonts', 'libsJs', 'libsSass']);
+gulp.task('default', ['pug', 'sass', 'js', 'img', 'svg', 'fonts', 'libsJs', 'libsSass', 'watch', 'browserSync']);
 
-gulp.task('default', function() {
-  runSequence('compile', 'server', 'watch');
-});
-
-gulp.task('watch', function() {
-
-  gulp.watch([paths.images + '**/*.*'], ['img']);
-  gulp.watch([paths.svg + '**/*.*'], ['svg']);
-  gulp.watch([paths.fonts + '**/*.*'], ['fonts']);
-  gulp.watch([paths.pug + '**/*.pug'], ['pug']);
-  gulp.watch([paths.sass + '**/*.scss'], ['sass']);
-  gulp.watch([paths.js + '**/*.js'], ['js']);
-  //gulp.watch([paths.js + '**/*.js'], ['js'], reload({stream: true}));
-});
-
-gulp.task('server', function() {
+gulp.task('browserSync', function() {
   browserSync.init({
     server: {
       baseDir: paths.dest.root
     },
-    files : [
-      paths.app + '**/*.*',
-      paths.dest.root + '**/*.*'
-    ],
-    port  : 8000,
-    ui    : {port: 8001}
+    //files : [
+    //  //paths.app + '**/*.*',
+    //  paths.dest.root + '*.html'
+    //],
+    port  : 3000,
+    open  : true,
+    notify: false,
+    ui: false
+    //,
+    //ui    : {port: 8001}
   });
 });
 
+gulp.task('watch', function() {
+  livereload.listen({
+    port: 2999
+  });
+
+  //gulp.watch([paths.images + '**/*.*'], ['img']);
+  //gulp.watch([paths.svg + '**/*.*'], ['svg']);
+  //gulp.watch([paths.fonts + '**/*.*'], ['fonts']);
+  gulp.watch(['./src/pug/**/*.pug'], ['pug']);
+  gulp.watch(['./src/scss/**/*.scss'], ['sass']);
+  gulp.watch(['./src/js/**/*.js'], ['js']);
+  //gulp.watch(['./build/*.html']).on("change", reload);
+});
 
 //gulp.task('watch', function() {
 //  livereload.listen({
@@ -370,8 +367,8 @@ gulp.task('server', function() {
 //
 //  //gulp.watch('./img/sprite.svg', ['svg2pug']);
 //  //gulp.watch('./source/svg/*.svg', ['svgo']);
-//  gulp.watch('./html/**/**/*.pug', ['html']);
-//  gulp.watch('./html/components/**/*.pug', ['html']);
+//  gulp.watch('./pug/**/**/*.pug', ['pug']);
+//  gulp.watch('./pug/components/**/*.pug', ['pug']);
 //  //gulp.watch('./source/png/**/*.png', ['sprite']);
 //  gulp.watch('./scss/**/**/*.scss', ['sass']);
 //  //gulp.watch('./postcss/**/*.css', ['css']);
@@ -379,9 +376,7 @@ gulp.task('server', function() {
 //  //gulp.watch('./js-coffee/**/*.coffee', ['coffee']);
 //});
 //
-//gulp.task('default', ['html', 'sprite', 'sass', 'js', 'browserSync', 'watch']);
-
-
+//gulp.task('default', ['pug', 'sprite', 'sass', 'js', 'browserSync', 'watch']);
 
 // Таск делает из svg-спрайта файл jade/pug
 //gulp.task('h2j', function() {
@@ -407,7 +402,7 @@ gulp.task('server', function() {
 //        prefix : "_",
 //        extname: ".pug"
 //      }))
-//      .pipe(gulp.dest('./html/svg'));
+//      .pipe(gulp.dest('./pug/svg'));
 //});
 
 //gulp.task('sprite', function() {

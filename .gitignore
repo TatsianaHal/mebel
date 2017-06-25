@@ -1,7 +1,5 @@
 ﻿.idea/
 /node_modules/
-/src/PSD/
-/vendor/
+/src/vendor/
 /npm-debug.log
 /build/
-*.html
