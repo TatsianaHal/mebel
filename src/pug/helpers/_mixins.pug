@@ -22,7 +22,7 @@ mixin svg-icon(name)
     title=name
     use(xlink:href='#' + name)
 
-// svg иконки из внешнего спрайта
+//- svg иконки из внешнего спрайта
 mixin svg-icon-2(name,mod)
   - mod = mod || ''
   svg(class="icon icon-" + name + ' ' + mod)

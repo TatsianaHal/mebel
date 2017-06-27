@@ -6,7 +6,7 @@ h1,
 
   margin: 10px 0 26px;
 
-  color: $black;
+  //color: $black;
 }
 
 h2,
@@ -25,21 +25,21 @@ h3,
 .h3 {
   @include font(24px, 600, 26px);
 
-  color: $black;
+  //color: $black;
 }
 
 h4,
 .h4 {
   @include font(24px, 600, 26px);
 
-  color: $black;
+  //color: $black;
 }
 
 p {
   @include font(16px, 300, 26px);
   //color: #242424;
 
-  color: $black;
+  //color: $black;
 }
 
 .uppercase {
@@ -47,8 +47,11 @@ p {
 }
 
 a {
-  @include font(inherit, inherit, inherit);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 
+  //color: inherit;
   color: $bmc;
   &:hover {
     text-decoration: none;
