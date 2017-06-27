@@ -23,8 +23,8 @@
 @import "components/buttons";     // Кнопки
 @import "components/pagination";  // Пагинация
 @import "components/form";        // Формы
-@import "layout/header";          // Шапка
-@import "layout/footer";          // Подвал
+@import "partials/header";          // Шапка
+@import "partials/footer";          // Подвал
 @import "common";                 // общие стили для страниц
 // Стили страниц
 @import "pages/main";             // Главная страница
