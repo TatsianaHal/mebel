@@ -10,10 +10,24 @@
 }
 
 // используется в сочетании с основным контейнером .container
+// аналог row у bootstrap
+//@include flex-wrap;
+@mixin row($gutter: $gutter) {
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+}
+
+// используется в сочетании с основным контейнером .container
 // аналог row у bootstrap, но с учетом flex-wrap: wrap
 .row {
-  @include flex-wrap;
-  width: 100%;
+  @include row;
+  &_flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &_center {
+    justify-content: center;
+  }
 }
 
 //@include column-in-row; // см. _grid
