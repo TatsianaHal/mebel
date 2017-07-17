@@ -1,0 +1,27 @@
+// /src/scss/pages/_gallery.scss
+// Галерея
+
+.figure-item {
+  margin: 0 0 $gutter * 2;
+  padding: $gutter;
+
+  &__link {
+    margin-bottom: 25px;
+  }
+  &__caption {
+    @include transition(color);
+    @include font(16px, 700, 22px);
+
+    margin: 10px 0;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $black;
+  }
+  &:hover &__caption {
+    cursor: default;
+
+    color: $bmc;
+  }
+}
