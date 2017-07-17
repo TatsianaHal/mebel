@@ -13,48 +13,48 @@ main.main
     include ../components/_breadcrumb
     //-.h1= path[3].name
     article.article
-      .product
-        .row
-          .product__gallery
-            a(href='/img/1920x1080.jpg', title='Alt', data-imagelightbox='gallery').product__img.label.label-hit
+      +b.product
+        .row.row_flex
+          +e.gallery
+            +e.img(href='/img/1920x1080.jpg', title='Alt', data-imagelightbox='gallery').label.label-hit
               img(src='http://placehold.it/650x625', alt='Alt')
-            .product-slider
-              .swiper-container.product-slider__container.ps-c-js
-                .swiper-wrapper.product-slider__wrapper
+            +b.product-slider
+              +e.container.swiper-container.ps-c-js
+                +e.wrapper.swiper-wrapper
                   - for (var x = 1; x < 6; x++)
-                    .swiper-slide.product-slider__slide
-                      a(href='/img/1920x1080.jpg', title='Alt', data-imagelightbox='gallery').product-slider__img
+                    +e.slide.swiper-slide
+                      +e.img(href='/img/1920x1080.jpg', title='Alt', data-imagelightbox='gallery')
                         img(src='http://placehold.it/100x100', alt='Alt')
-              .swiper-button-prev.product-slider__prev.ps-prev-js
-              .swiper-button-next.product-slider__next.ps-next-js
-          .product__feature(itemscope itemtype="http://schema.org/Product")
+              +e.prev.swiper-button-prev.ps-prev-js
+              +e.next.swiper-button-next.ps-next-js
+          +e.feature(itemscope itemtype="http://schema.org/Product")
             h1(itemprop="name")= path[3].name
-            .product__description(itemprop="description")
+            +e.description(itemprop="description")
               p Продается магазин в Заводском районе, ул. Титова, дом 16 на 1 этаже 258, 7 кв.м. + подвальный склад 227,2 кв.м.
               p Помещение расположено на 1 и подвальном этажах, 2 входа, есть возможность деления площади магазина за счет монтажа еще одного входа. Имеется лифтовая камера для удобства погрузки, разгрузки.
               p Возможно различное использование: под магазин, оптовый офис-склад, производство-склад итд
               p Хорошее расположение, в 5 минутах ходьбы Пензенский строительный университет, остановки общественного транспорта, имеется возможность сделать закрытую парковку рядом с магазином.
-            .product__bottom
-              .product__price-layout(itemprop="offers" itemscope itemtype="http://schema.org/Offer")
+            +e.bottom
+              +e.price-layout(itemprop="offers" itemscope itemtype="http://schema.org/Offer")
                 // Разряды надо разделить 999 999
-                .product__old-price.rouble 999999
-                .product__price
+                +e.old-price.rouble 999999
+                +e.price
                   span(itemprop="price") 999999
                   =" "
                   span(style='font-family: rub-arial-regular;') Р
                   meta(content='RUB', itemprop='priceCurrency')
               a(href='#product').button.button--large.button--second-color-filled.js-popup Заказать
   // Модальное окно "Заполните форму заказа"
-  #product.mfp-hide.popup.popup-product
-    .popup-product__aside
+  +b.popup-product.mfp-hide.popup#product
+    +e.aside
       p
         strong Выбранный товар:
       each item in popup
         include ../components/_category-item
-    .popup-product__form
+    +e.form
       .h2 Заполните форму заказа
       p Все поля обязательны к заполнению.<br>После отправки, в течение 1 рабочего дня, с Вами свяжется наш менеджер
-      form.form.form-product
+      +b.FORM.form-product.form
         +input-type-text('Фамилия Имя Отчество')
         +input-type-text('Телефон')
         +input-type-text('E-mail')
