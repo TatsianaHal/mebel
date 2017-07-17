@@ -1,74 +1,72 @@
-include ../helpers/_variables
-
 -
-  var path = [{name: 'Главная',   href: '/'},
-              {name: 'Корзина'}]
+  var path =  [
+                {name: 'Главная',   href: '/'},
+                {name: 'Корзина'}
+              ]
 
-// Обрати внимание, в отличие от главной, здесь есть тег <aside>
-.main-container
-  //-include ../components/_aside
-
-  main
+main.main
+  .container
     include ../components/_breadcrumb
-    h1 Корзина
+    .h1= path[1].name
     .cart
       p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam voluptas deleniti nulla amet laborum libero adipisci, quod quas quibusdam eos id voluptate harum veniam quia culpa obcaecati minus aliquid exercitationem repellat labore asperiores. Dolores nesciunt quia quis explicabo, suscipit fugiat eligendi enim, porro est assumenda maiores! Suscipit odio non nemo debitis laborum tempora obcaecati facere reiciendis. Explicabo nostrum itaque consequuntur dolorum autem ut, labore molestiae.
-      form.cart-form
-        .cart-table
-          - for (var x = 0; x < 4; x++)
-            .cart-table__row
+      +b.FORM.cart-form
+        +b.cart-table
+          - for (var x = 0; x < 2; x++)
+            +e.row.row_flex
               // колонка фото
-              .cart-table__column.cart-table__column--photo
-                .cart-table__header
-                .cart-table__content
-                  a(href='#', alt='Alt').cart-table__link
-                    img(src='http://placehold.it/80x80', alt='Alt').cart-table__img
+              +e.column.--photo
+                +e.header
+                +e.content
+                  +e.link(href='#', alt='Alt')
+                    +e.img(src='http://placehold.it/80x80', alt='Alt')
               // Колонка описания
-              .cart-table__column.cart-table__column--content
-                .cart-table__header
+              +e.column.--content
+                +e.header
                   span Наименование товара и описание
-                .cart-table__content
-                  a(href='#', alt='Alt').cart-table__link
-                    h4.cart-table__title Lorem ipsum dolor sit sitit ipsum dolor sit amet, consectetur adipisicing.
-                  .mfr Производитель:&nbsp;
-                    a.mfr__link(href='#') JayBo
-                  .cart-table__layout
-                    .cart-table__line
-                      .cart-table__key Вкус:
-                      .cart-table__value Smurf Cake/Черничный пирог
-                    .cart-table__line
-                      .cart-table__key Крепость:
-                      .cart-table__volume 3 мг
-                      .cart-table__color(style="background-color: #7bc7b2;")
+                +e.content
+                  +e.link(href='#', alt='Alt')
+                    +e.H4.title Lorem ipsum dolor sit sitit ipsum dolor sit amet, consectetur adipisicing.
+                  +b.mfr Производитель:&nbsp;
+                    +e.link(href='#') JayBo
+                  +e.layout
+                    +e.line
+                      +e.key Вкус:
+                      +e.value Smurf Cake/Черничный пирог
+                    +e.line
+                      +e.key Крепость:
+                      +e.volume 3 мг
+                      +e.color(style="background-color: #7bc7b2;")
               // Колонка цены
-              .cart-table__column.cart-table__column--price
-                .cart-table__header
+              +e.column.--price
+                +e.header
                   span Цена
-                .cart-table__content
-                  .cart-table__price.rouble 9999999
-                  .cart-table__price.cart-table__price--old.rouble 300
+                +e.content
+                  +e.price.rouble 9999999
+                  +e.price.--old.rouble 3000
               // Колонка количества
-              .cart-table__column.cart-table__column--quantity
-                .cart-table__header
+              +e.column.--quantity
+                +e.header
                   span Количество
-                .cart-table__content
-                  .cart-table__stepper
-                    button.cart-table__stepper-minus &minus;
-                    input.cart-table__stepper-input(type='text')
-                    button.cart-table__stepper-plus &plus;
+                +e.content
+                  +e.stepper
+                    +e.BUTTON.stepper-minus &minus;
+                    +e.INPUT.stepper-input(type='text')
+                    +e.BUTTON.stepper-plus &plus;
               // Колонка итоговой стоимости
-              .cart-table__column.cart-table__column--total
-                .cart-table__header
+              +e.column.--total
+                +e.header
                   span Стоимость
-                .cart-table__content
-                  .cart-table__price.rouble 9999999
+                +e.content
+                  +e.price.rouble 9999999
               // колонка удаления
-              a(href="#").cart-table__del
-        .cart-total
-          .cart-total__row
-            .cart-total__key Всего в корзине:
-            .cart-total__value 3 товара
-          .cart-total__row
-            .cart-total__key Общая сумма заказа:
-            .cart-total__value.rouble 13 600
-        button(type="submit").cart-form__submit Оформить заказ
+              +e.del(href="#")
+        +b.cart-total
+          +e.row
+            +e.key Всего в корзине:
+            +e.value 3 товара
+          +e.row
+            +e.key Общая сумма заказа:
+            +e.value.rouble 13 600
+        +e.BUTTON.submit(type="submit") Оформить заказ
+  include ../components/_bottom-panel
