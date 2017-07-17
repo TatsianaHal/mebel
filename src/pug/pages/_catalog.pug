@@ -1,6 +1,8 @@
 -
-  var path = [{name: 'Главная',   href: '/'},
-              {name: 'Каталог'}]
+  var path =  [
+                {name: 'Главная',   href: '/'},
+                {name: 'Каталог'}
+              ]
 
 //- Используется в catalog-item
 -
@@ -20,7 +22,7 @@ main.main
     include ../components/_breadcrumb
     h1= path[1].name
     .catalog
-      .row
+      .row.row_flex
         // hit - хит продаж, new - новинка, action - Акция, discount - скидка, sale - распродажа
         - for (var x = 0; x < 7; x++)
           include ../components/_catalog-item
