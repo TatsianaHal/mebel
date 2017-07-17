@@ -9,21 +9,16 @@
   // @include min-width;
   width: 100%;
   max-width: $site-width;
-
-  padding-right: $gutter;
-  padding-left: $gutter;
-
-
   margin-right: auto;
   margin-left: auto;
+  padding-right: $gutter;
+  padding-left: $gutter;
 }
 
 .subcontainer {
   width: 100%;
-  //padding-right: 25px;
-  //padding-left: 25px;
-  padding-left: $gutter;
   padding-right: $gutter;
+  padding-left: $gutter;
 }
 
 // Логотипы хит продаж, новинка, акция/распродажа
@@ -45,12 +40,15 @@
     border: none;
   }
 }
-@each $class, $text, $bgc in  (hit, "Хит продаж", #ea4e00),
-                              (new, "Новинка", #8bb21e),
-                              (action, "Акция", #e52c49),
-                              (discount, "Скидка", #e4af00),
-                              (sale, "Распродажа", #e56c00),
-                              (news, "Новость", #8bb21e) {
+
+$label: (hit, "Хит продаж", #ea4e00),
+    (new, "Новинка", #8bb21e),
+    (action, "Акция", #e52c49),
+    (discount, "Скидка", #e4af00),
+    (sale, "Распродажа", #e56c00),
+    (news, "Новость", #8bb21e);
+
+@each $class, $text, $bgc in $label {
   .label-#{$class} {
     &:after {
       content: $text;
@@ -123,12 +121,12 @@
       transform: scale(0.60);
     }
   }
-  @each $social, $color in  (fb, $fb),
-    (ok, $ok),
-    (tw, $tw),
-    (vk, $vk),
-    (inst, $inst),
-    (yout, $yout) {
+  @each $social, $color in (fb, $fb),
+  (ok, $ok),
+  (tw, $tw),
+  (vk, $vk),
+  (inst, $inst),
+  (yout, $yout) {
     &__link-#{$social} {
       background-color: $color;
     }
