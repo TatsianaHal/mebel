@@ -1,80 +1,65 @@
-h4 Test my new 16
 main.main
   section
     .container
       .row
-        .main-slider
-          .swiper-container.main-slider__container.ms-c-js
-            .swiper-wrapper.main-slider__wrapper
+        +b.main-slider
+          +e.container.swiper-container.ms-c-js
+            +e.wrapper.swiper-wrapper
               - for (var x = 1; x < 4; x++)
-                .swiper-slide.main-slider__slide(style='background-image: url("http://placehold.it/1200x640");')
-                  .main-slider__banner
+                +e.slide.swiper-slide(style='background-image: url("http://placehold.it/1200x640");')
+                  +e.banner
                     p Мебель дома должна быть красивой, функциональной, надежной. Мы воплощаем это в реальность.
           //- If we need pagination
-          .swiper-pagination.main-slider__pagination.ms-pag-js
+          +e.pagination.swiper-pagination.ms-pag-js
           //- If we need navigation buttons
-          .swiper-button-prev.main-slider__prev.ms-prev-js
-          .swiper-button-next.main-slider__next.ms-next-js
+          +e.prev.swiper-button-prev.ms-prev-js
+          +e.next.swiper-button-next.ms-next-js
           //- If we need scrollbar
           //- .swiper-scrollbar
   section
     .container
       .row
         .h2 Популярные товары
-        .subcatalog-slider
-          .swiper-container.subcatalog-slider__container.scs-c-js
-            .swiper-wrapper.subcatalog-slider__wrapper
+        +b.subcatalog-slider
+          +e.container.swiper-container.scs-c-js
+            +e.wrapper.swiper-wrapper
               each item in label
-                .swiper-slide.subcatalog-slider__slide
+                +e.slide.swiper-slide
                   include ../components/_subcatalog-item
-              //- for (var y = 1; y < 6; y++)
-                .swiper-slide.subcatalog-slider__slide
-                  .item.subcatalog-item
-                    .item-img.subcatalog-item__img.label.label-hit.js-item-click
-                      img(src="http://placehold.it/270x270", alt="Alt")
-                    .subcatalog-item__category-name Мебель для гостинной
-                    .subcatalog-item__title.js-item-click Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    a(href='/product.html').button.button--medium.button--second-color-filled.js-item-link 999 999 <span>руб.</span>
-          .swiper-button-prev.subcatalog-slider__prev.scs-prev-js
-          .swiper-button-next.subcatalog-slider__next.scs-next-js
+          +e.prev.swiper-button-prev.scs-prev-js
+          +e.next.swiper-button-next.scs-next-js
   section
-    .news-slider
+    +b.news-slider
       .container
-        .news-slider__subcontainer
+        +e.subcontainer
           .h4 Все новости
-        .news-slider__subcontainer
-          .swiper-container.news-slider__container.ns-c-js
-            .swiper-wrapper.news-slider__wrapper
+        +e.subcontainer
+          +e.container.swiper-container.ns-c-js
+            +e.wrapper.swiper-wrapper
               - for (var a = 1; a < 4; a++)
-                .swiper-slide.news-slider__slide
-                  .row
-                    .news-slider__column
+              +e.slide.swiper-slide
+                  .row.row_flex
+                    +e.column
                       time(datetime='2016-04-15') 15 апреля 2016
-                      .news-slider__title Все «за» и «против» кожаной мебели: мнение специалистов.
-                      .news-slider__text Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nesciunt minus libero eum, animi ipsum earum, beatae modi quaerat unde fugiat delectus, voluptatum non amet, sequi odio adipisci ullam illum harum nam voluptatibus consequuntur! Soluta voluptates temporibus nihil praesentium fugit mollitia repudiandae distinctio, amet. Voluptatem molestiae architecto ipsa, id ex perspiciatis. Repudiandae eligendi, officia illum. Adipisci nihil provident, perspiciatis minima.
-                      a(href="#").button.button--large.button--white.news-slider__button Читать дальше
-                    .news-slider__column
+                      +e.title Все «за» и «против» кожаной мебели: мнение специалистов.
+                      +e.text Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nesciunt minus libero eum, animi ipsum earum, beatae modi quaerat unde fugiat delectus, voluptatum non amet, sequi odio adipisci ullam illum harum nam voluptatibus consequuntur! Soluta voluptates temporibus nihil praesentium fugit mollitia repudiandae distinctio, amet. Voluptatem molestiae architecto ipsa, id ex perspiciatis. Repudiandae eligendi, officia illum. Adipisci nihil provident, perspiciatis minima.
+                      +e.button(href="#").button.--large.--white Читать дальше
+                    +e.column
                       //.news-slider__img(style='background-image: url("http://placehold.it/470x390");')
-                      img(src='http://placehold.it/470x390', alt='Alt').news-slider__img
+                      +e.img(src='http://placehold.it/470x390', alt='Alt')
           //- If we need navigation buttons
-        .swiper-button-prev.news-slider__prev.ns-prev-js
-        .swiper-button-next.news-slider__next.ns-next-js
+        +e.prev.swiper-button-prev.ns-prev-js
+        +e.next.swiper-button-next.ns-next-js
   section
     .container
       .row
         .h2 Полезные статьи
-        .articles-slider
-          .swiper-container.articles-slider__container.ars-c-js
-            .swiper-wrapper.articles-slider__wrapper
+        +b.articles-slider
+          +e.container.swiper-container.ars-c-js
+            +e.wrapper.swiper-wrapper
               - for (var b = 0; b < 7; b++)
                 .swiper-slide
                   include ../components/_article-item
-                //-.swiper-slide.article-item
-                  a(href="/article.html").article-item__img
-                    img(src="http://placehold.it/270x195", alt="Alt")
-                  a(href="/article.html").article-item__title Lorem ipsum dolor sit amet!
-                  .article-item__text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint eum voluptatibus illo ducimus excepturi deleniti illum, laudantium. Rerum molestias animi explicabo similique quis voluptate dicta perferendis, ratione et excepturi aspernatur velit sit id dolores! Alias sit magnam ex nulla, quod unde cupiditate expedita!
-                  a(href="/article.html").article-item__button Читать дальше
-          .swiper-button-prev.articles-slider__prev.ars-prev-js
-          .swiper-button-next.articles-slider__next.ars-next-js
+          +e.prev.swiper-button-prev.ars-prev-js
+          +e.next.swiper-button-next.ars-next-js
   include ../components/_bottom-panel
