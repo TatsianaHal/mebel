@@ -1,0 +1,23 @@
+-
+  var path =  [
+                {name: 'Главная',   href: '/'},
+                {name: 'Каталог',   href: '/catalog.html'},
+                {name: 'Мебель для гостиной'}
+              ]
+
+main.main
+  .container
+    include ../components/_breadcrumb
+    h1= path[2].name
+    +b.filter
+      // активный элемент <a class="filter__item active" href="#"></a>
+      //- navMenu[1].submenu см. variables, раздел каталог
+      each item in navMenu[1].submenu
+        +e.item(href="#")=item.name
+    .category
+      .row.row_flex
+        each item in label
+          include ../components/_category-item
+    .button-group.button-group--center-items
+      a.button.button--large.button--main-color(href='#') Показать еще
+  include ../components/_bottom-panel

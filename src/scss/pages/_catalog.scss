@@ -29,7 +29,6 @@
   }
 }
 
-
 .item {
   @include transition(box-shadow);
 
@@ -135,11 +134,11 @@
   }
 }
 
-.subcatalog {
+.category {
   //
 }
 
-.subcatalog-item {
+.category-item {
   display: flex;
   flex-direction: column;
 
@@ -197,11 +196,6 @@
   &__link {
     margin-bottom: 25px;
   }
-  //&__img {
-  //  @include img;
-  //
-  //  font-size: 0;
-  //}
   &__caption {
     @include transition(color);
     @include font(16px, 700, 22px);

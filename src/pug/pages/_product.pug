@@ -1,8 +1,8 @@
 -
-  var path = [
+  var path =  [
                 {name: 'Главная',             href: '/'},
                 {name: 'Каталог',             href: '/catalog.html'},
-                {name: 'Мебель для гостиной', href: '/subcatalog.html'},
+                {name: 'Мебель для гостиной', href: '/category.html'},
                 {name: 'Мебельный гарнитур «Интерра»'}
               ]
 -
@@ -50,7 +50,7 @@ main.main
       p
         strong Выбранный товар:
       each item in popup
-        include ../components/_subcatalog-item
+        include ../components/_category-item
     .popup-product__form
       .h2 Заполните форму заказа
       p Все поля обязательны к заполнению.<br>После отправки, в течение 1 рабочего дня, с Вами свяжется наш менеджер
