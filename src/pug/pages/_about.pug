@@ -1,6 +1,8 @@
 -
-  var path = [{name: 'Главная',   href: '/'},
-              {name: 'О компании'}]
+  var path =  [
+                {name: 'Главная',   href: '/'},
+                {name: 'О компании'}
+              ]
 
 main.main
   .container
@@ -24,13 +26,13 @@ main.main
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore incidunt, iure sint possimus beatae quae quos debitis deleniti? Itaque?
         time(datetime='2016-08-30').date 30.08.2016
     section
-      .gallery
+      +b.gallery
         h2 Фотогалерея
-        .row
+        .row.row_flex
           - for (var x = 1; x <= 12; x++)
-            figure.gallery__item
-              a(href='/img/1920x1080.jpg', data-imagelightbox='gallery').gallery__link
-                img(src='http://placehold.it/250x175', alt='Alt ' + x).gallery__img
+            +e.FIGURE.item
+              +e.link(href='/img/1920x1080.jpg', data-imagelightbox='gallery')
+                +e.img(src='http://placehold.it/250x175', alt='Alt ' + x)
         .button-group.button-group--center-items
           a.button.button--large.button--main-color(href='#') Показать еще
   include ../components/_bottom-panel
