@@ -176,9 +176,13 @@
   }
 
   & > img:first-of-type {
-    float: left;
-
-    margin-right: 20px;
+    @media (max-width: $sm - 1) {
+      display: block;
+    }
+    @media (min-width: $sm) {
+      margin-right: 20px;
+      float: left;
+    }
   }
 
   img.border {
