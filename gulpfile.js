@@ -26,7 +26,7 @@ let pug          = require('gulp-pug'),
 
 //  ######### svg sprite #########
 let svgSprite = require('gulp-svg-sprite'),
-    svgmin    = require('gulp-svgmin'),
+    //svgmin    = require('gulp-svgmin'),
     cheerio   = require('gulp-cheerio'),
     replace   = require('gulp-replace');
 //  ######### !svg sprite #########
@@ -288,8 +288,14 @@ gulp.task('svg', function() {
   return gulp.src(paths.svg + '*.svg')
              .pipe(plumber())
              // minify svg
-             .pipe(svgmin({
+             //.pipe(svgmin({
+             //  js2svg: {
+             //    pretty: true
+             //  }
+             //}))
+             .pipe(svgo({
                js2svg: {
+                 indent: 2, // optional, default is 4
                  pretty: true
                }
              }))
@@ -318,6 +324,14 @@ gulp.task('svg', function() {
                    example: true
                  }
                }
+             }))
+             .pipe(replace('<?xml version="1.0" encoding="utf-8"?>', ''))
+             .pipe(cheerio({
+               run          : function($) {
+                 $('[xmlns]').removeAttr('xmlns');
+                 $('svg').css('display', 'none');
+               },
+               parserOptions: {xmlMode: true}
              }))
              .pipe(plumber.stop())
              .pipe(gulp.dest(paths.images))
