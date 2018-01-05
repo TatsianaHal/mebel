@@ -145,14 +145,12 @@
 }
 
 .logo {
-  @include text-decoration;
-
   display: flex;
 
+  text-decoration: none;
   text-transform: uppercase;
 
   align-items: center;
-  // justify-content: center;
   justify-content: flex-start;
   span {
     @include font(18px, 700, 18px);
@@ -185,11 +183,9 @@
   $nav-bg-color-hover: $bmc;
   $nav-font-color: $black;
   $nav-font-color-hover: white;
-  // z-index: 1000;
 
   width: 100%;
 
-  // box-shadow: 0 0 0 2px $bmc;
   @media (min-width: $breakpoint) {
     border: 2px solid $bmc;
   }
@@ -227,7 +223,6 @@
     @include font($nav-font-size, $nav-font-weight, $nav-font-size);
 
     position: relative;
-    // display: block;
 
     display: flex;
 
@@ -242,7 +237,6 @@
     align-items: center;
     justify-content: flex-start;
     @media (min-width: $breakpoint) {
-      // display: inline-block;
       justify-content: center;
     }
     span {
@@ -279,10 +273,8 @@
 
     align-items: center;
     justify-content: center;
-    // миксин генерирует стрелку в псевдоэлементе before см. _mixins.scss
 
     // анимация стрелки
-
     @media (max-width: $breakpoint - 1) {
       @include arrow(8px, 1px, currentcolor, currentcolor);
 
@@ -372,62 +364,5 @@
       color: $bmc;
       background: rgba($black, 0.05);
     }
-  }
-}
-
-// кнопка раскрытия мобильного меню в шапке
-.nav-button {
-  position: relative;
-
-  display: block;
-
-  width: 24px;
-  height: 20px;
-  padding: 0;
-
-  cursor: pointer;
-  text-transform: uppercase;
-  //background;
-  background: linear-gradient(to bottom, transparent 8px, $bmc 8px, $bmc 12px, transparent 12px);
-
-  @media (min-width: $breakpoint) {
-    display: none;
-
-    margin-bottom: 0;
-  }
-  &:before,
-  &:after {
-    @include transition();
-
-    position: absolute;
-    left: 0;
-
-    width: 100%;
-    height: 4px;
-
-    content: "";
-
-    background: $bmc;
-  }
-  &:before {
-    top: 0;
-  }
-  &:after {
-    bottom: 0;
-  }
-  &.opened {
-    background: none;
-  }
-  &.opened:after,
-  &.opened:before {
-    top: 50%;
-
-    width: 28px;
-  }
-  &.opened:after {
-    transform: translate(-2px, -50%) rotate(45deg);
-  }
-  &.opened:before {
-    transform: translate(-2px, -50%) rotate(-45deg);
   }
 }
