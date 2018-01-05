@@ -1,16 +1,5 @@
 // нормализация стилей страницы   https://github.com/necolas/normalize.css
 @import "base/normalize";
-// бутстрап
-//@import "../vendor/bootstrap-sass-3.3.6/stylesheets/_bootstrap.scss";
-// библиотека миксинов, для создания гибкой системы сеток https://github.com/oddbird/susy/
-// почитать на русском здесь    http://zencoder.ru/susy/brief-tutorial-susy-2/
-//                   и здесь    http://zencoder.ru/css/static-grids-susy/
-// s@import "../vendor/susy/sass/susy";
-// инициализация susy http://susydocs.oddbird.net/en/latest/settings/
-// @import "vendor/susy-settings";
-// библиотека миксинов, для работы с медиа-запросами https://github.com/at-import/breakpoint
-// почитать на русском здесь    http://zencoder.ru/susy/brief-tutorial-susy-part2/
-// @import "../vendor/breakpoint-2.x.x/stylesheets/breakpoint";
 @import "helpers/vars";           // Переменные проекта
 @import "helpers/mixins";         // Миксины проекта
 @import "base/fonts";             // Шрифты
@@ -18,6 +7,7 @@
 @import "base/reset";             // Сброс и определение глобальных стилей
 @import "base/typography";        // Типографика проекта
 @import "icons";                  // Всё, что касается спрайта/иконок, SGV
+@import "svg-sprite";             // Сгенерированный SGV-sprite
 // Компоненты сайта
 @import "components/breadcrumb";  // Хлебные крошки
 @import "components/buttons";     // Кнопки
