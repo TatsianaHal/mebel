@@ -1,13 +1,11 @@
-// нормализация стилей страницы   https://github.com/necolas/normalize.css
-@import "base/normalize";
 @import "helpers/vars";           // Переменные проекта
 @import "helpers/mixins";         // Миксины проекта
 @import "base/fonts";             // Шрифты
 @import "base/grid";              // Компоненты сетки
 @import "base/reset";             // Сброс и определение глобальных стилей
 @import "base/typography";        // Типографика проекта
-@import "icons";                  // Всё, что касается спрайта/иконок, SGV
 @import "svg-sprite";             // Сгенерированный SGV-sprite
+@import "icons";                  // Всё, что касается спрайта/иконок, SGV
 // Компоненты сайта
 @import "components/breadcrumb";  // Хлебные крошки
 @import "components/buttons";     // Кнопки
@@ -30,4 +28,4 @@
 @import "user-content";           // Файл стилей пользователей (добавление через админку)
 // Стили подключенных библиотек
 @import "vendor/swiper";          // настройка слайдера swiper http://idangero.us/swiper/get-started/
-@import "vendor/magnific-popup";  // Всплывающие окна https://github.com/dimsemenov/Magnific-Popupswiper/get-started/
+@import "vendor/magnific-popup";  // Всплывающие окна  https://github.com/dimsemenov/Magnific-Popupswiper/get-started/

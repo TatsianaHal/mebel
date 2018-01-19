@@ -5,37 +5,13 @@
   background-image: url(/img/sprite.png);
 }
 
-.svg-icon,
 .svg-social {
   fill: currentColor;
 }
 
-//.logo-svg {
-//  width: 4.9rem;
-//  height: 3.6rem;
-//
-//  color: $bmc;
-//}
-//
-//.onlinebees-svg {
-//  width: 3rem;
-//  min-width: 3rem;
-//  height: 3.5rem;
-//  margin-left: 2rem;
-//}
-//
-//.onlinebees-hexagon {
-//  fill: #efd655;
-//}
-//
-//.onlinebees:hover .onlinebees-svg .onlinebees-hexagon {
-//  fill: red;
-//}
-
 .handset {
   margin-right: 1rem;
 }
-
 
 // svg иконки
 @each $name, $width, $height in
